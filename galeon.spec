@@ -15,17 +15,18 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.12
+Version:	1.3.13a
 Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	dac3aac7df1169da9b065d053644a69c
+# Source0-md5:	c29bdfb23fdafddfcfb6ae7fc6c822fd
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
+Patch2:		%{name}-locale-names.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -36,7 +37,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.4.0
 BuildRequires:	libbonoboui-devel >= 2.4.0
 BuildRequires:	libglade2-devel >= 2.0.1
 BuildRequires:	libgnomeui-devel >= 2.4.0
@@ -73,9 +73,12 @@ interpretacji stron Mozilli).
 O galeon é um browser para o GNOME baseado no mozilla.
 
 %prep
-%setup -q
+%setup -q -n %{name}-1.3.13
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+
+mv po/{no,nb}.po
 
 # regenerate - didn't compile with ORBit2 2.7.2
 cd idl
@@ -84,7 +87,6 @@ mv Galeon*.[ch] ../src
 
 %build
 rm -f missing
-cp /usr/share/automake/mkinstalldirs .
 glib-gettextize --copy --force
 intltoolize --copy --force
 %{__libtoolize}
@@ -93,14 +95,7 @@ intltoolize --copy --force
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-mozilla-libs=%{_libdir} \
-	--with-mozilla-includes=%{_includedir}/mozilla \
-	--with-mozilla-home=%{_libdir}/mozilla \
-	--enable-nls \
-	--disable-included-gettext \
 	--disable-schemas-install \
-	--disable-werror \
-	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	%if %{with nautilus}
 	--enable-nautilus-view=yes
 	%else
