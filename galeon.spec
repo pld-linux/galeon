@@ -49,7 +49,6 @@ BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
-Requires(post):	mozilla
 Requires(post):	scrollkeeper
 Requires:	libbonobo >= 2.4.0
 Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
