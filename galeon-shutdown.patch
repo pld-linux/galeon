@@ -1,0 +1,37 @@
+Index: src/main.c
+===================================================================
+RCS file: /cvs/gnome/galeon/src/main.c,v
+retrieving revision 1.175.2.7
+diff -u -r1.175.2.7 main.c
+--- src/main.c	2001/11/22 01:45:15	1.175.2.7
++++ src/main.c	2001/12/01 00:18:15
+@@ -277,6 +277,11 @@
+ 		gtk_main ();
+ 	}
+ 
++	/* absolutely no more mozembeds - this happens after the
++           mainloop has returned to make sure that all timers have
++           expired and everything has been handled. */
++	gtk_moz_embed_pop_startup ();
++
+ 	eel_gconf_monitor_remove ("/apps/galeon");
+ 	eel_gconf_monitor_remove ("/apps/nautilus/preferences");
+ 
+Index: src/misc.c
+===================================================================
+RCS file: /cvs/gnome/galeon/src/misc.c,v
+retrieving revision 1.267.2.3
+diff -u -r1.267.2.3 misc.c
+--- src/misc.c	2001/11/01 01:35:20	1.267.2.3
++++ src/misc.c	2001/12/01 00:18:15
+@@ -1876,9 +1876,7 @@
+ 	/* remove notifiers for mozilla prefs */
+ 	galeon_notification_remove (&mozilla_notifiers);
+ 
+-	/* absolutely no more mozembeds */
+-	gtk_moz_embed_pop_startup ();
+-
++	/* end our mainloop */
+ 	gtk_main_quit();
+ }
+ 
