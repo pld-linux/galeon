@@ -29,6 +29,7 @@ Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-locale-names.patch
 Patch3:		%{name}-po.patch
 Patch4:		%{name}-mozilla.patch
+Patch5:		%{name}-mozilla173.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -83,6 +84,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 mv po/{no,nb}.po
 
