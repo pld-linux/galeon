@@ -83,7 +83,7 @@ intltoolize --copy --force
 	--with-mozilla-home=%{_libdir}/mozilla \
 	--enable-nls \
 	--disable-included-gettext \
-	--disable-install-schemas \
+	--disable-schemas-install \
 	--disable-werror \
 	--with-mozilla-snapshot=1.3 \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
