@@ -15,13 +15,13 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.18
-Release:	2
+Version:	1.3.19
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	d04164ebf26c65fdfd23fc1278edfce1
+# Source0-md5:	7d272c6b1863252026386fd299122841
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
@@ -117,7 +117,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
-rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
+# No components installed now.
+#rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
 
 rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
@@ -142,7 +143,6 @@ umask 022
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README*
 %attr(755,root,root) %{_bindir}/*
-%attr(755,root,root) %{_libdir}/%{name}
 %{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
 %{_desktopdir}/*
