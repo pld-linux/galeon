@@ -1,22 +1,22 @@
-diff -urN galeon-0.12pre1/src/main.c new/galeon-0.12pre1/src/main.c
---- galeon-0.12pre1/src/main.c	Sun Aug  5 17:57:58 2001
-+++ galeon-0.12pre1/src/main.c	Tue Aug  7 15:49:44 2001
-@@ -44,6 +44,7 @@
+--- galeon-1.2.0/src/main.c	Mon Feb 25 22:48:51 2002
++++ galeon-1.2.0/src/main.c.orig	Fri Apr  5 21:53:37 2002
+@@ -49,6 +49,8 @@
+ #ifdef ENABLE_APPLET
  #include <applet-widget.h>
  #endif
- 
 +#include <stdlib.h>
- #include <errno.h>
- 
- /* local function prototypes */
-@@ -144,6 +145,10 @@
++#include <errno.h>
+ #ifdef ENABLE_GNOME_FILE_SELECTOR
+ #include <bonobo/bonobo-main.h>
+ #endif /* !ENABLE_GNOME_FILE_SELECTOR */
+@@ -182,6 +184,10 @@
+ 	CORBA_ORB orb;
  	gint i, n_urls;
  	gchar **url;
++	
++	 /* Setting MOZILLA_FIVE_HOME */
++	        if (getenv("MOZILLA_FIVE_HOME") == NULL)
++	            setenv("MOZILLA_FIVE_HOME", "/usr/X11R6/lib/mozilla/", 1);
  
-+	/* Setting MOZILLA_FIVE_HOME */
-+	if (getenv("MOZILLA_FIVE_HOME") == NULL)
-+	    setenv("MOZILLA_FIVE_HOME", "/usr/X11R6/lib/mozilla/", 1);
-+	    
  	 /* make stdout line buffered - we only use it for debug info */
  	setvbuf (stdout, NULL, _IOLBF, 0);
- 
