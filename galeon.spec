@@ -34,6 +34,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	gettext-devel
+BuildRequires:	glib2-devel >= 1:2.4.0
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
 BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
@@ -49,6 +50,7 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
+Requires:	glib2 >= 1:2.4.0
 Requires:	libbonobo >= 2.4.0
 Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
