@@ -17,7 +17,7 @@ Summary(zh_CN):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	1.3.20
 Release:	2
-Epoch:		1
+Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
