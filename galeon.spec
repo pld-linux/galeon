@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without nautilus	# disable nautilus view
+%bcond_with nautilus	# disable nautilus view
 %bcond_with gcc2	# compile using gcc2 to get working gcc2-compiled java
 			# plugin (better get gcc3-compiled one).
 			# Flash plugin seems to still not work, use
@@ -16,7 +16,7 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.20
-Release:	1
+Release:	2
 Epoch:		1
 License:	GPL
 Group:		X11/Applications/Networking
@@ -36,7 +36,7 @@ BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.4.4
-BuildRequires:	gnome-vfs2-devel >= 2.4.0
+BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
 BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	intltool
 BuildRequires:	libbonoboui-devel >= 2.4.0
