@@ -5,7 +5,7 @@
 #			  mozilla instead. To compile wit this option, You 
 #			  have to install mozilla compiled with gcc2.
 #
-%define		minmozver	1.4
+%define		minmozver	1.5a
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -13,7 +13,7 @@ Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.7
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
