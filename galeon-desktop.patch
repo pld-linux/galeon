@@ -6,7 +6,7 @@ diff -aurN galeon-1.3.10.orig/galeon.desktop galeon-1.3.10/galeon.desktop
  Type=Application
  Icon=galeon
 -Categories=Application;Network;
-+Categories=Application;Network;X-WWW
++Categories=GNOME;GTK;Network;WebBrowser
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=galeon
  X-GNOME-Bugzilla-Component=general
@@ -18,7 +18,7 @@ diff -aurN galeon-1.3.10.orig/galeon.desktop.in galeon-1.3.10/galeon.desktop.in
  Type=Application
  Icon=galeon
 -Categories=Application;Network;
-+Categories=Application;Network;X-WWW
++Categories=GNOME;GTK;Network;WebBrowser
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=galeon
  X-GNOME-Bugzilla-Component=general
