@@ -1,0 +1,35 @@
+.TH galeon-config-tool 1 "13 August 2001" "Version 1.0"
+.SH NAME
+galeon-config-tool \-  Manipulate galeon configuration
+.SH SYNOPSIS
+.B galeon-config-tool
+.SH DESCRIPTION
+\fIgaleon-config-tool\fP can be run by a user in order to clean out configuration directories which may be outdated and cause galeon to malfunction.  It should be used carefully, as it will remove bookmarks, history, and other preferences which may be valuable to the user.  It can also be run as root to manipulate configuration schemas.
+.SH OPTIONS
+galeon-config-tool accepts the following options:
+.TP
+.B \-\-clean
+Removes all user settings
+.TP
+.B \-\-install\-schemas
+Installs schemas with settings default (run as root)
+.TP
+.B \-\-clean\-schemas
+Removes schemas with settings default (run as root)
+.TP
+.B \-\-fix\-gconf\-permissions
+Fixes permissions of gconf repository (run as root)
+.SH AUTHOR
+Written by Jared Johnson <solomon@futureks.net> for the Debian Project, then heavily modified and added to by the Galeon Project.
+.SH REPORTING BUGS
+Information about reporting bugs can be found at http://bugzilla.gnome.org
+.SH COPYRIGHT
+Copyright \(co 2000-2001 Marco Pesenti Gritti
+.br
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+.SH OTHER INFO
+The webpage for Galeon is at http://galeon.sourceforge.net.  Here you can find info
+about Galeon and download the latest version.
+.SH SEE ALSO
+.BR galeon (1)

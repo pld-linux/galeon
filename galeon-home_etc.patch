@@ -1,0 +1,260 @@
+diff -Nru galeon-1.3.10.orig/bookmarks/bookmarks-import-druid-konqueror.c galeon-1.3.10/bookmarks/bookmarks-import-druid-konqueror.c
+--- galeon-1.3.10.orig/bookmarks/bookmarks-import-druid-konqueror.c	2002-12-15 21:24:08.000000000 +0100
++++ galeon-1.3.10/bookmarks/bookmarks-import-druid-konqueror.c	2003-11-13 12:26:57.000000000 +0100
+@@ -134,6 +134,7 @@
+ 	GSList *ret = NULL;
+ 	gchar *dir;
+ 	gchar *fname;
++	gchar *home_etc = getenv("HOME_ETC");
+ 	guint i;
+ 	
+ 	static const gchar *galeon_dirs[] = { ".galeon", ".galeon1" , ".galeon2" };
+@@ -143,7 +144,7 @@
+ 	for (i = 0; i < G_N_ELEMENTS (galeon_dirs); ++i)
+ 	{
+ 		uint j;
+-		dir = g_build_filename (g_get_home_dir (), galeon_dirs[i], NULL);
++		dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), galeon_dirs[i], NULL);
+ 		l = gul_find_file  (dir, "bookmarks.xbel", 5);
+ 		ret = g_slist_concat (ret, l);
+ 		for (j = 0; j < 10; ++j)
+diff -Nru galeon-1.3.10.orig/bookmarks/testbookmarks.c galeon-1.3.10/bookmarks/testbookmarks.c
+--- galeon-1.3.10.orig/bookmarks/testbookmarks.c	2002-07-23 14:06:55.000000000 +0200
++++ galeon-1.3.10/bookmarks/testbookmarks.c	2003-11-13 12:26:57.000000000 +0100
+@@ -132,8 +132,9 @@
+ int 
+ main (int argc, char *argv[])
+ {
++	gchar *home_etc = getenv("HOME_ETC");
+ 	gchar *filename = argc == 2 ? argv[1] 
+-		: g_strconcat (g_get_home_dir (),
++		: g_strconcat (home_etc ? home_etc : g_get_home_dir (),
+ 			       "/.galeon/bookmarks.xbel", NULL);
+ 	GbBookmarkSet *set;
+ 	GbFolder *folder1, *folder2, *r;
+diff -Nru galeon-1.3.10.orig/embed/global-history.c galeon-1.3.10/embed/global-history.c
+--- galeon-1.3.10.orig/embed/global-history.c	2003-09-19 07:00:23.000000000 +0200
++++ galeon-1.3.10/embed/global-history.c	2003-11-13 12:34:52.000000000 +0100
+@@ -389,6 +389,7 @@
+ static void
+ history_load (GlobalHistory *gh)
+ {
++	gchar *home_etc = getenv("HOME_ETC");
+         /* definition of SAX parser for reading documents */
+ 	static xmlSAXHandler parser =
+ 	{
+@@ -421,7 +422,7 @@
+         gchar *histfile;
+ 
+ 	/* build the filename */
+-	histfile = g_build_filename (g_get_home_dir (), GALEON_DIR, 
++	histfile = g_build_filename (home_etc ? home_etc : g_get_home_dir (), GALEON_DIR, 
+ 				     "history.xml", NULL);
+ 	
+ 	/* build the initial history hash table */
+@@ -526,6 +527,7 @@
+ history_save (GlobalHistoryPrivate *ghpriv)
+ {
+ 	gchar *histfile, *tmpfile;
++	gchar *home_etc = getenv("HOME_ETC");
+ 	FILE *fp;
+ 	int ret;
+ 
+@@ -538,7 +540,7 @@
+ 		return;
+ 	}
+ 
+-	histfile = g_build_filename (g_get_home_dir (),
++	histfile = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 				     GALEON_DIR,
+ 				     "history.xml",
+ 				     NULL);
+diff -Nru galeon-1.3.10.orig/galeon-config-tool.in galeon-1.3.10/galeon-config-tool.in
+--- galeon-1.3.10.orig/galeon-config-tool.in	2002-03-14 08:40:24.000000000 +0100
++++ galeon-1.3.10/galeon-config-tool.in	2003-11-13 12:26:57.000000000 +0100
+@@ -44,6 +44,21 @@
+ 		    echo "Removing $HOME/.gnome/accels/galeon"
+ 		    rm -rf $HOME/.gnome/accels/galeon
+ 
++				if [ -n "$HOME_ETC" ]; then
++		    	echo "Removing $HOME_ETC/.galeon"
++		   		rm -rf $HOME_ETC/.galeon
++
++		    	echo "Removing $HOME_ETC/.gconf/apps/galeon"
++		    	rm -rf $HOME_ETC/.gconf/apps/galeon
++
++		    	echo "Removing $HOME_ETC/.gnome/galeon"
++		    	rm -rf $HOME_ETC/.gnome/galeon
++
++		    	echo "Removing $HOME_ETC/.gnome/accels/galeon"
++		    	rm -rf $HOME_ETC/.gnome/accels/galeon
++				
++				fi
++
+ 		    echo "...Done."
+ 
+ 	    else
+diff -Nru galeon-1.3.10.orig/mozilla/mozilla-embed-shell.cpp galeon-1.3.10/mozilla/mozilla-embed-shell.cpp
+--- galeon-1.3.10.orig/mozilla/mozilla-embed-shell.cpp	2003-09-25 05:36:35.000000000 +0200
++++ galeon-1.3.10/mozilla/mozilla-embed-shell.cpp	2003-11-13 12:39:02.000000000 +0100
+@@ -331,7 +331,8 @@
+ mozilla_init_profile (void)
+ {
+ 	char *profile_path;
+-	profile_path = g_build_filename (g_get_home_dir (), 
++	char *home_etc = getenv("HOME_ETC");
++	profile_path = g_build_filename (home_etc ? home_etc : g_get_home_dir (), 
+ 					 MOZILLA_PROFILE_DIR, 
+ 					 NULL);
+         gtk_moz_embed_set_profile_path (profile_path, MOZILLA_PROFILE_NAME);
+diff -Nru galeon-1.3.10.orig/mozilla/MyportalProtocolHandler.cpp galeon-1.3.10/mozilla/MyportalProtocolHandler.cpp
+--- galeon-1.3.10.orig/mozilla/MyportalProtocolHandler.cpp	2003-09-15 02:48:24.000000000 +0200
++++ galeon-1.3.10/mozilla/MyportalProtocolHandler.cpp	2003-11-13 12:26:57.000000000 +0100
+@@ -198,13 +198,14 @@
+ NS_METHOD GMyportalProtocolHandler::CreateMyportalPage (const nsACString &path, nsIURI *aURI, nsIChannel **aChannel)
+ {
+ 	nsresult rv;
++	char *home_etc = getenv("HOME_ETC");
+ 
+ 	/* check bookmarks are loaded */
+ 	//	g_return_val_if_fail (bookmarks_root != NULL,NS_ERROR_FAILURE);
+ 	
+ 	/* open the rendering stream */
+ #if USE_INTERMEDIATE_FILE
+-	gchar *filename = g_strconcat (g_get_home_dir (),
++	gchar *filename = g_strconcat (home_etc ? home_etc : g_get_home_dir (),
+ 				       "/.galeon/myportal.html",
+ 				       NULL);
+ 	gchar *myportalURI = g_strconcat ("file://",filename, NULL);
+diff -Nru galeon-1.3.10.orig/mozilla/SideBar.cpp galeon-1.3.10/mozilla/SideBar.cpp
+--- galeon-1.3.10.orig/mozilla/SideBar.cpp	2003-09-15 02:56:54.000000000 +0200
++++ galeon-1.3.10/mozilla/SideBar.cpp	2003-11-13 12:36:30.000000000 +0100
+@@ -255,7 +255,8 @@
+ 
+ void GSidebar::LoadSidebarPages(void)
+ {
+-	gchar *filename = g_build_filename(g_get_home_dir(),
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *filename = g_build_filename(home_etc ? home_etc : g_get_home_dir(),
+ 					   GALEON_DIR"/sidebars.xml",
+ 					   NULL);
+ 
+@@ -299,7 +300,8 @@
+ 
+ void GSidebar::SaveSidebarPages(void)
+ {
+-	gchar *filename = g_build_filename (g_get_home_dir(),
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *filename = g_build_filename (home_etc ? home_etc : g_get_home_dir(),
+ 					    GALEON_DIR"/sidebars.xml",
+ 					    NULL);
+ 
+diff -Nru galeon-1.3.10.orig/src/galeon-favicon-cache.c galeon-1.3.10/src/galeon-favicon-cache.c
+--- galeon-1.3.10.orig/src/galeon-favicon-cache.c	2003-09-05 03:01:53.000000000 +0200
++++ galeon-1.3.10/src/galeon-favicon-cache.c	2003-11-13 12:26:57.000000000 +0100
+@@ -114,6 +114,8 @@
+ static void
+ galeon_favicon_cache_init (GaleonFaviconCache *cache)
+ {
++	gchar *home_etc = getenv("HOME_ETC");
++	
+ 	cache->priv = g_new0 (GaleonFaviconCachePrivate, 1);
+ 
+ 	cache->priv->url_to_pixbuf     = g_hash_table_new_full (g_str_hash,
+@@ -125,11 +127,11 @@
+ 								(GDestroyNotify) g_free,
+ 								(GDestroyNotify) g_object_unref);
+ 
+-	cache->priv->filename  = g_build_filename (g_get_home_dir (),
++	cache->priv->filename  = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 				                   GALEON_DIR,
+ 				                   "favicon_cache.xml",
+ 				                   NULL);
+-	cache->priv->directory = g_build_filename (g_get_home_dir (),
++	cache->priv->directory = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 						   GALEON_DIR,
+ 						   "favicon_cache/",
+ 						   NULL);
+diff -Nru galeon-1.3.10.orig/src/galeon-shell.c galeon-1.3.10/src/galeon-shell.c
+--- galeon-1.3.10.orig/src/galeon-shell.c	2003-10-13 23:56:13.000000000 +0200
++++ galeon-1.3.10/src/galeon-shell.c	2003-11-13 12:26:57.000000000 +0100
+@@ -660,7 +660,8 @@
+ {
+ 	/* this is temp code, I need to think about how to properly initialize bookmarks */
+ 	GbXBEL *io = gb_xbel_new ();
+-	gchar *filename = g_strconcat (g_get_home_dir (), "/",
++	gchar *home_etc = getenv("HOME_ETC");
++	gchar *filename = g_strconcat (home_etc ? home_etc : g_get_home_dir (), "/",
+ 				       GALEON_DIR "/bookmarks.xbel", NULL);
+ 	
+ 	/* init the bookmark icon provider */
+diff -Nru galeon-1.3.10.orig/src/session.c galeon-1.3.10/src/session.c
+--- galeon-1.3.10.orig/src/session.c	2003-10-22 17:25:06.000000000 +0200
++++ galeon-1.3.10/src/session.c	2003-11-13 12:26:57.000000000 +0100
+@@ -160,19 +160,20 @@
+ get_session_filename (const char *filename)
+ {
+ 	char *save_to;
++	char *home_etc = getenv("HOME_ETC");
+ 	
+ 	g_return_val_if_fail (filename != NULL, NULL);
+ 
+ 	if (strcmp (filename, SESSION_SAVED) == 0)
+ 	{
+-		save_to = g_build_filename (g_get_home_dir (),
++		save_to = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 					    GALEON_DIR,
+ 					    "session_saved.xml",
+ 					    NULL);
+ 	}
+ 	else if (strcmp (filename, SESSION_CRASHED) == 0)
+ 	{
+-		save_to = g_build_filename (g_get_home_dir (),
++		save_to = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 					    GALEON_DIR,
+ 					    "session_crashed.xml",
+ 					    NULL);
+@@ -181,7 +182,7 @@
+ 	{
+ 		char *tmp;
+ 		
+-		save_to = g_build_filename (g_get_home_dir (),
++		save_to = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 					    GALEON_DIR,
+ 					    "session_gnome-XXXXXX",
+ 					    NULL);
+diff -Nru galeon-1.3.10.orig/utils/gul-general.c galeon-1.3.10/utils/gul-general.c
+--- galeon-1.3.10.orig/utils/gul-general.c	2003-09-08 20:51:28.000000000 +0200
++++ galeon-1.3.10/utils/gul-general.c	2003-11-13 12:31:43.000000000 +0100
+@@ -75,6 +75,7 @@
+ 	static GHashTable *already_found = NULL;
+ 	gchar *alternative[6];
+ 	gchar *file;
++	gchar *home_etc = getenv("HOME_ETC");
+ 	gint i;
+ 	
+ 	/* create cache hash table if it doesnt already exist */
+@@ -99,7 +100,7 @@
+ 	}
+ 
+ 	/* try the default */
+-	file = g_build_filename (g_get_home_dir (), GALEON_DIR, fname, NULL);
++	file = g_build_filename (home_etc ? home_etc : g_get_home_dir (), GALEON_DIR, fname, NULL);
+ 	
+ 	/* success? */
+ 	if (g_file_test (file, G_FILE_TEST_EXISTS))
+diff -Nru galeon-1.3.10.orig/utils/gul-state.c galeon-1.3.10/utils/gul-state.c
+--- galeon-1.3.10.orig/utils/gul-state.c	2003-08-30 15:50:36.000000000 +0200
++++ galeon-1.3.10/utils/gul-state.c	2003-11-13 12:26:57.000000000 +0100
+@@ -38,9 +38,10 @@
+ {
+ 	char *state_file;
+ 	char *config_prefix;
++	char *home_etc = getenv("HOME_ETC");
+ 
+ 	/* Using ~/.galeon/state.ini to keep all files together. */
+-	state_file = g_build_filename (g_get_home_dir(),
++	state_file = g_build_filename (home_etc ? home_etc : g_get_home_dir(),
+ 			               ".galeon", "state.ini", NULL);
+ 
+ 	config_prefix = g_strconcat ("=", state_file, "=/", NULL);
