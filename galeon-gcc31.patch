@@ -1,0 +1,11 @@
+--- galeon-1.2.0/src/mozilla/ProgressListener2.cpp.wiget	Mon Apr 15 18:14:48 2002
++++ galeon-1.2.0/src/mozilla/ProgressListener2.cpp	Mon Apr 15 18:15:07 2002
+@@ -166,7 +166,7 @@
+ 					      nsIFile *aFile, 
+ 					      DownloadAction aAction,
+ 					      gpointer info,
+-					      PRInt64 aTimeDownloadStarted = 0)
++					      PRInt64 aTimeDownloadStarted)
+ {
+ 	nsresult rv;
+ 
