@@ -1,0 +1,14 @@
+diff -urN aa/galeon-1.3.15/mozilla/HeaderSniffer.cpp galeon-1.3.15/mozilla/HeaderSniffer.cpp
+--- aa/galeon-1.3.15/mozilla/HeaderSniffer.cpp	2004-05-23 23:19:46.000000000 +0200
++++ galeon-1.3.15/mozilla/HeaderSniffer.cpp	2004-06-28 20:46:31.578642112 +0200
+@@ -642,7 +642,9 @@
+ 
+ 		/* Reset the flags to turn off content, the user toggles
+ 		 * if they want to turn it on */
+-		(gint)flags &= ~EMBED_PERSIST_SAVE_CONTENT;
++		gint val = (gint)flags;
++		val &= ~EMBED_PERSIST_SAVE_CONTENT;
++		flags = (EmbedPersistFlags)val;
+ 		galeon_embed_persist_set_flags (mEmbedPersist, flags);
+ 
+ 		toggle = gtk_check_button_new_with_mnemonic (_("Save _with content"));
