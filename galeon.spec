@@ -1,22 +1,20 @@
 
 %define		minmozver	1.2.1
-%define		snap		20021206
+%define		snap		20021209
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3
+Version:	1.3.1
 Release:	0.%{snap}.1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-#Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}.%{snap}.tar.bz2
+#ource0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
-#Patch0:		%{name}-mozilla_five_home.patch
-#Patch1:		%{name}-bookmarks_pixmaps_path.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -59,13 +57,10 @@ O galeon é um browser para o gnome baseado no mozilla.
 
 %prep
 %setup -q
-#%patch0 -p1
-#%patch1 -p1
 
 %build
 rm -f missing
 glib-gettextize --copy --force
-#xml-i18n-toolize --copy --force
 intltoolize --copy --force
 libtoolize --copy --force
 %{__aclocal}
