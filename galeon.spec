@@ -1,7 +1,8 @@
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Name:		galeon
-Version:	0.12pre3
+Version:	0.12
+Epoch:		1
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
