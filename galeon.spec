@@ -12,6 +12,7 @@ Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
+# Source0-md5:	a9d0de29f2da9f40139557f8ba3ee044
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-am_fix.patch
