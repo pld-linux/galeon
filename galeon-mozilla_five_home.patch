@@ -1,25 +1,22 @@
-diff -urN galeon-0.10.5.org/src/main.c galeon-0.10.5/src/main.c
---- galeon-0.10.5.org/src/main.c	Mon Apr 30 10:46:08 2001
-+++ galeon-0.10.5/src/main.c	Tue May  1 10:38:48 2001
-@@ -17,7 +17,7 @@
-  */
+diff -urN galeon-0.11.0.org/src/main.c galeon-0.11.0/src/main.c
+--- galeon-0.11.0.org/src/main.c	Sat Jun 30 23:36:45 2001
++++ galeon-0.11.0/src/main.c	Sat Jun 30 23:38:06 2001
+@@ -41,6 +41,7 @@
+ #include <applet-widget.h>
+ #endif
  
- #include "galeon.h"
--
 +#include <stdlib.h>
+ #include <errno.h>
  
  /* local function prototypes */
- static void new_shell (CORBA_ORB orb);
-@@ -124,6 +124,12 @@
- 	char **urls = NULL;
- 	poptContext ctx;
- 	char fullurl[PATH_MAX];
-+
-+	/*
-+	 * Setting MOZILLA_FIVE_HOME
-+	 */
+@@ -132,6 +133,10 @@
+ 	gint i, n_urls;
+ 	gchar **url;
+ 
++        /* Setting MOZILLA_FIVE_HOME */
 +	if (getenv("MOZILLA_FIVE_HOME") == NULL)
 +	    setenv("MOZILLA_FIVE_HOME", "/usr/X11R6/lib/mozilla/", 1);
- 
- 	 /* Make stdout line buffered - we only use it for debug info */
++	
+ 	 /* make stdout line buffered - we only use it for debug info */
  	setvbuf (stdout, NULL, _IOLBF, 0);
+ 
