@@ -1,0 +1,12 @@
+diff -urN galeon-0.12.3.org/src/mozilla/TOCProtocolHandler.cpp galeon-0.12.3/src/mozilla/TOCProtocolHandler.cpp
+--- galeon-0.12.3.org/src/mozilla/TOCProtocolHandler.cpp	Thu Oct 11 16:25:38 2001
++++ galeon-0.12.3/src/mozilla/TOCProtocolHandler.cpp	Thu Oct 11 16:28:04 2001
+@@ -22,7 +22,7 @@
+ 
+ #include <algorithm>
+ #if (GCC_VERSION < VERSION2(3,0)) && (GCC_VERSION >= VERSION2(2,95))
+-#include <g++-3/string>
++#include <g++/string>
+ #else
+ #include <string>
+ #endif
