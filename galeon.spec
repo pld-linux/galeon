@@ -32,6 +32,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
+%define		_sysconfdir	/etc/X11/GNOME
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -45,15 +46,20 @@ interpretacji stron Mozilli).
 %patch0 -p1
 
 %build
+#sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in >configure.in.tmp
+#mv -f configure.in.tmp configure.in
+#rm -f missing
+#aclocal -I %{_aclocaldir}/gnome
+#autoconf
+#automake -a -c
 %configure2_13 \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
 	--with-mozilla-home=%{_libdir}/mozilla \
 	--enable-nls \
 	--disable-included-gettext \
-	--sysconfdir=%{_sysconfdir}/X11/GNOME \
 	--disable-install-schemas \
-	--enable-gconf-source=%{_sysconfdir}/X11/GNOME/gconf/schemas
+	--enable-gconf-source=%{_sysconfdir}/gconf/schemas
 
 
 
@@ -64,8 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Networkdir=%{_applnkdir}/Network/WWW \
-	sysconfdir=%{_sysconfdir}/X11/GNOME 
+	Networkdir=%{_applnkdir}/Network/WWW
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
 
@@ -78,7 +83,7 @@ umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 gconftool --shutdown
-GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/X11/GNOME/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/X11/GNOME/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
+GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -92,4 +97,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/oaf/*
 %{_datadir}/sounds/galeon
 %{_pixmapsdir}/*
-%{_sysconfdir}/*
+%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/sound/events/*
+%{_mandir}/man1/*
