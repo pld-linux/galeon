@@ -16,6 +16,7 @@ Requires:	mozilla >= 0.9.2-2
 BuildRequires:	GConf-devel
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
+BuildRequires:  gnome-core-devel >= 1.2.0
 BuildRequires:	gnome-libs-devel >= 1.2.0
 BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
@@ -23,6 +24,8 @@ BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	mozilla-devel >= 0.9.2
 BuildRequires:	oaf >= 0.6.2
+BuildRequires:  oaf-devel >= 0.6.2
+BuildRequires:  gdk-pixbuf-devel >= 0.10.
 BuildRequires:	bison
 BuildRequires:	automake
 BuildRequires:	autoconf
