@@ -5,8 +5,8 @@
 #			  mozilla instead. To compile wit this option, You 
 #			  have to install mozilla compiled with gcc2.
 #
-%define		minmozver	1.4a
-%define		snap		20030419
+%define		minmozver	1.4b
+%define		snap		20030518
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -14,13 +14,13 @@ Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.4
-#Release:	0.%{snap}.1
-Release:	2
+Release:	0.%{snap}.1
+#Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sf.net/galeon/%{name}-%{version}.tar.bz2
-#Source0:	%{name}-%{version}-%{snap}.tar.bz2
+#Source0:	http://dl.sf.net/galeon/%{name}-%{version}.tar.bz2
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	autoconf
@@ -88,7 +88,7 @@ intltoolize --copy --force
 	--disable-included-gettext \
 	--disable-schemas-install \
 	--disable-werror \
-	--with-mozilla-snapshot=1.4a \
+	--with-mozilla-snapshot=1.4b \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=yes
 
