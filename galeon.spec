@@ -21,7 +21,7 @@ BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
-#BuildRequires:	mozilla-devel >= 0.9.3-1
+BuildRequires:	mozilla-devel >= 0.9.3-1
 BuildRequires:	oaf >= 0.6.2
 BuildRequires:  oaf-devel >= 0.6.2
 BuildRequires:  gdk-pixbuf-devel >= 0.10.
