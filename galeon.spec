@@ -67,7 +67,7 @@ interpretacji stron Mozilli).
 O galeon é um browser para o gnome baseado no mozilla.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{version}-%{snap}
 
 %build
 rm -f missing
