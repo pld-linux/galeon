@@ -6,7 +6,7 @@ diff -urN galeon-1.3.5.orig/galeon.desktop.in galeon-1.3.5/galeon.desktop.in
  Type=Application
  Icon=galeon.png
 -Categories=Application;Network;
-+Categories=GTK;GNOME;Network;X-WWW
++Categories=GTK;GNOME;Application;Network;X-WWW
  X-GNOME-Bugzilla-Bugzilla=GNOME
  X-GNOME-Bugzilla-Product=galeon
  X-GNOME-Bugzilla-Component=general
