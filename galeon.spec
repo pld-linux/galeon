@@ -105,7 +105,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
-GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/GNOME2/gconf/schemas/galeon.schemas >/dev/null
+GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas >/dev/null
 
 %postun -p /usr/bin/scrollkeeper-update
 
