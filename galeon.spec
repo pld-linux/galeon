@@ -25,10 +25,12 @@ Source0:	http://dl.sf.net/galeon/%{name}-%{version}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
 Patch0:		%{name}-desktop.patch
-BuildRequires:	autoconf
-BuildRequires:	automake
+# s/uint/guint/ (or missing include alternatively)
+Patch1:		%{name}-uint.patch
 BuildRequires:	GConf2-devel >= 2.0.0
 BuildRequires:	ORBit2-devel >= 2.0.0
+BuildRequires:	autoconf
+BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-vfs2-devel >= 2.0.0
@@ -73,6 +75,12 @@ O galeon é um browser para o gnome baseado no mozilla.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
+
+# regenerate - didn't compile with ORBit2 2.7.2
+cd idl
+orbit-idl-2 -I /usr/share/idl/bonobo-2.0 -I /usr/share/idl/bonobo-activation-2.0 Galeon*.idl
+mv Galeon*.[ch] ../src
 
 %build
 rm -f missing
@@ -106,16 +114,16 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
-%find_lang galeon-2.0
+rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
+
+# galeon-2.0.mo, but gnome/help/galeon
+%find_lang galeon-2.0 --with-gnome --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post
 /usr/bin/scrollkeeper-update
-umask 022
-rm -f %{_libdir}/mozilla/component.reg
-MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 %gconf_schema_install
 
 %postun -p /usr/bin/scrollkeeper-update
@@ -124,11 +132,10 @@ MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README*
 %attr(755,root,root) %{_bindir}/*
-%{_libdir}/%{name}
+%attr(755,root,root) %{_libdir}/%{name}
 %{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
 %{_desktopdir}/*
-%{_datadir}/gnome/help/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_omf_dest_dir}/%{name}
 %{_datadir}/sounds/galeon
