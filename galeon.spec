@@ -6,7 +6,7 @@
 #			  have to install mozilla compiled with gcc2.
 #
 %define		minmozver	1.2.1
-%define		snap		20021221
+%define		snap		20030103
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
