@@ -21,6 +21,7 @@ License:	GPL
 Group:		X11/Applications/Networking
 #Source0:	http://dl.sf.net/galeon/%{name}-%{version}.tar.bz2
 Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	08dc2d55849a5d719ec694bf9ad91091
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	autoconf
