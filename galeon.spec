@@ -2,17 +2,17 @@ Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Name:		galeon
 Version:	0.11.1
-Release:	1
+Release:	2
 License:	GPL
 Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz     	
 Patch0:		%{name}-mozilla_five_home.patch
-Patch1:		%{name}-macros.patch
-Patch2:		%{name}-gettext.patch
+#Patch1:		%{name}-macros.patch
+#Patch2:		%{name}-gettext.patch
 URL:		http://galeon.sourceforge.net/
-Requires:	mozilla >= 0.9.2-2
+Requires:	mozilla-embedded >= 0.9.2-4
 BuildRequires:	GConf-devel
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
@@ -22,14 +22,11 @@ BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	mozilla-devel >= 0.9.2
+BuildRequires:	mozilla-devel >= 0.9.2-4
 BuildRequires:	oaf >= 0.6.2
 BuildRequires:  oaf-devel >= 0.6.2
 BuildRequires:  gdk-pixbuf-devel >= 0.10.
 BuildRequires:	bison
-BuildRequires:	automake
-BuildRequires:	autoconf
-BuildRequires:	libtool
 BuildRequires:	xml-i18n-tools
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,16 +43,8 @@ interpretacji stron Mozilli).
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
-rm missing
-gettextize --copy --force
-libtoolize --copy --force
-aclocal
-autoconf
-automake -a -c
 %configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
