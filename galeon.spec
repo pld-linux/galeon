@@ -15,7 +15,7 @@ Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.5
 #Release:	1.%{snap}.1
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -24,6 +24,7 @@ Source0:	http://dl.sf.net/galeon/%{name}-%{version}.tar.bz2
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
+Patch0:		%{name}-desktop.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	GConf2-devel >= 2.0.0
@@ -71,6 +72,7 @@ O galeon é um browser para o gnome baseado no mozilla.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 rm -f missing
