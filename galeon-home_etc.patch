@@ -1,14 +1,12 @@
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c	2002-09-11 20:22:54.000000000 +0200
-+++ galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c	2004-03-20 18:24:51.152443440 +0100
-@@ -133,29 +133,30 @@
- 	GSList *l;
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-export-druid-konqueror.c galeon-1.3.15/bookmarks/bookmarks-export-druid-konqueror.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-export-druid-konqueror.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-export-druid-konqueror.c	2004-06-01 21:18:47.057848344 +0200
+@@ -134,28 +134,28 @@
  	GSList *ret = NULL;
  	gchar *dir;
-+	gchar *home_etc = getenv("HOME_ETC");
  	
 -	dir = g_build_filename (g_get_home_dir (), ".kde", NULL);
-+	dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), ".kde", NULL);
++	dir = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), ".kde", NULL);
  	l = gul_find_file  (dir, "bookmarks.xbel", 5);
  	ret = g_slist_concat (ret, l);
  	l = gul_find_file (dir, "bookmarks.xml", 5);
@@ -16,7 +14,7 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c galeon-
  	g_free (dir);
  
 -	dir = g_build_filename (g_get_home_dir (), ".kde2", NULL);
-+	dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), ".kde2", NULL);
++	dir = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), ".kde2", NULL);
  	l = gul_find_file (dir, "bookmarks.xbel", 5);
  	ret = g_slist_concat (ret, l);
  	l = gul_find_file (dir, "bookmarks.xml", 5);
@@ -24,7 +22,7 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c galeon-
  	g_free (dir);
  
 -	dir = g_build_filename (g_get_home_dir (), ".kde3", NULL);
-+	dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), ".kde3", NULL);
++	dir = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), ".kde3", NULL);
  	l = gul_find_file (dir, "bookmarks.xbel", 5);
  	ret = g_slist_concat (ret, l);
  	l = gul_find_file (dir, "bookmarks.xml", 5);
@@ -32,22 +30,22 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-konqueror.c galeon-
  	g_free (dir);
  
 -	dir = g_build_filename (g_get_home_dir (), ".konqueror", NULL);
-+	dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), ".konqueror", NULL);
++	dir = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), ".konqueror", NULL);
  	l = gul_find_file (dir, "bookmarks.xbel", 5);
  	ret = g_slist_concat (ret, l);
  	l = gul_find_file (dir, "bookmarks.xml", 5);
-@@ -165,7 +166,7 @@
+@@ -165,7 +165,7 @@
  	{
  		/* give a default */
  		ret = g_slist_prepend
 -			(ret, g_build_filename (g_get_home_dir (), 
-+			(ret, g_build_filename (home_etc ? home_etc : g_get_home_dir (), 
++			(ret, g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), 
  						".kde/share/apps/konqueror/bookmarks.xml", NULL));
  	}
  
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-mozilla.c galeon-1.3.13a/bookmarks/bookmarks-export-druid-mozilla.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-mozilla.c	2002-09-11 20:22:54.000000000 +0200
-+++ galeon-1.3.13a/bookmarks/bookmarks-export-druid-mozilla.c	2004-03-20 18:25:30.731426520 +0100
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-export-druid-mozilla.c galeon-1.3.15/bookmarks/bookmarks-export-druid-mozilla.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-export-druid-mozilla.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-export-druid-mozilla.c	2004-06-01 21:17:08.902770184 +0200
 @@ -131,7 +131,7 @@
  gb_export_druid_mozilla_get_locations_impl (GbExportDruid *druid)
  {
@@ -57,9 +55,9 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-mozilla.c galeon-1.
  	l = gul_find_file  (dir, "bookmarks.html", 4);
  	if (l == NULL)
  	{
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-netscape.c galeon-1.3.13a/bookmarks/bookmarks-export-druid-netscape.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-netscape.c	2002-09-11 20:22:54.000000000 +0200
-+++ galeon-1.3.13a/bookmarks/bookmarks-export-druid-netscape.c	2004-03-20 18:25:45.674154880 +0100
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-export-druid-netscape.c galeon-1.3.15/bookmarks/bookmarks-export-druid-netscape.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-export-druid-netscape.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-export-druid-netscape.c	2004-06-01 21:17:44.632338464 +0200
 @@ -131,7 +131,7 @@
  gb_export_druid_netscape_get_locations_impl (GbExportDruid *druid)
  {
@@ -69,9 +67,9 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-export-druid-netscape.c galeon-1
  	l = gul_find_file (dir, "bookmarks.html", 4);
  	if (l == NULL)
  	{
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-epiphany.c galeon-1.3.13a/bookmarks/bookmarks-import-druid-epiphany.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-epiphany.c	2003-12-19 00:42:19.000000000 +0100
-+++ galeon-1.3.13a/bookmarks/bookmarks-import-druid-epiphany.c	2004-03-20 18:26:03.695415232 +0100
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-epiphany.c galeon-1.3.15/bookmarks/bookmarks-import-druid-epiphany.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-epiphany.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-import-druid-epiphany.c	2004-06-01 21:16:04.593546672 +0200
 @@ -140,7 +140,7 @@
  	GSList *l;
  	gchar *dir;
@@ -81,38 +79,30 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-epiphany.c galeon-1
  				GNOME_DOT_GNOME,
  				"epiphany",
  				NULL);
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-konqueror.c galeon-1.3.13a/bookmarks/bookmarks-import-druid-konqueror.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-konqueror.c	2004-03-20 17:43:20.000000000 +0100
-+++ galeon-1.3.13a/bookmarks/bookmarks-import-druid-konqueror.c	2004-03-20 18:26:53.570833016 +0100
-@@ -134,6 +134,7 @@
- 	GSList *ret = NULL;
- 	gchar *dir;
- 	gchar *fname;
-+	gchar *home_etc = getenv("HOME_ETC");
- 	guint i;
- 	
- 	static const gchar *galeon_dirs[] = { ".galeon", ".galeon1" , ".galeon2" };
-@@ -143,7 +144,7 @@
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-konqueror.c galeon-1.3.15/bookmarks/bookmarks-import-druid-konqueror.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-konqueror.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-import-druid-konqueror.c	2004-06-01 21:18:07.769821032 +0200
+@@ -143,7 +143,7 @@
  	for (i = 0; i < G_N_ELEMENTS (galeon_dirs); ++i)
  	{
  		guint j;
 -		dir = g_build_filename (g_get_home_dir (), galeon_dirs[i], NULL);
-+		dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), galeon_dirs[i], NULL);
++		dir = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), galeon_dirs[i], NULL);
  		l = gul_find_file  (dir, "bookmarks.xbel", 5);
  		ret = g_slist_concat (ret, l);
  		for (j = 0; j < 10; ++j)
-@@ -162,7 +163,7 @@
+@@ -162,7 +162,7 @@
  	/* konqueror locations */
  	for (i = 0; i < G_N_ELEMENTS (kde_dirs); ++i)
  	{
 -		dir = g_build_filename (g_get_home_dir (), kde_dirs[i], NULL);
-+		dir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), kde_dirs[i], NULL);
++		dir = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (), kde_dirs[i], NULL);
  		l = gul_find_file  (dir, "bookmarks.xbel", 5);
  		ret = g_slist_concat (ret, l);
  		l = gul_find_file (dir, "bookmarks.xml", 5);
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-mozilla.c galeon-1.3.13a/bookmarks/bookmarks-import-druid-mozilla.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-mozilla.c	2002-09-11 20:22:54.000000000 +0200
-+++ galeon-1.3.13a/bookmarks/bookmarks-import-druid-mozilla.c	2004-03-20 18:27:04.138226528 +0100
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-mozilla.c galeon-1.3.15/bookmarks/bookmarks-import-druid-mozilla.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-mozilla.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-import-druid-mozilla.c	2004-06-01 21:16:33.788108424 +0200
 @@ -131,7 +131,7 @@
  gb_import_druid_mozilla_get_locations_impl (GbImportDruid *druid)
  {
@@ -122,9 +112,9 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-mozilla.c galeon-1.
  	l = gul_find_file  (dir, "bookmarks.html", 4);
  	g_free (dir);
  	return l;
-diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-netscape.c galeon-1.3.13a/bookmarks/bookmarks-import-druid-netscape.c
---- aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-netscape.c	2002-09-11 20:22:54.000000000 +0200
-+++ galeon-1.3.13a/bookmarks/bookmarks-import-druid-netscape.c	2004-03-20 18:27:14.527647096 +0100
+diff -urN aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-netscape.c galeon-1.3.15/bookmarks/bookmarks-import-druid-netscape.c
+--- aa/galeon-1.3.15/bookmarks/bookmarks-import-druid-netscape.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/bookmarks/bookmarks-import-druid-netscape.c	2004-06-01 21:17:23.948482888 +0200
 @@ -131,7 +131,7 @@
  gb_import_druid_netscape_get_locations_impl (GbImportDruid *druid)
  {
@@ -134,9 +124,9 @@ diff -urN aa/galeon-1.3.13a/bookmarks/bookmarks-import-druid-netscape.c galeon-1
  	l = gul_find_file (dir, "bookmarks.html", 4);
  	g_free (dir);
  	return l;
-diff -urN aa/galeon-1.3.13a/bookmarks/testbookmarks.c galeon-1.3.13a/bookmarks/testbookmarks.c
---- aa/galeon-1.3.13a/bookmarks/testbookmarks.c	2002-07-23 14:06:55.000000000 +0200
-+++ galeon-1.3.13a/bookmarks/testbookmarks.c	2004-03-20 18:22:38.727575080 +0100
+diff -urN aa/galeon-1.3.15/bookmarks/testbookmarks.c galeon-1.3.15/bookmarks/testbookmarks.c
+--- aa/galeon-1.3.15/bookmarks/testbookmarks.c	2002-07-23 14:06:55.000000000 +0200
++++ galeon-1.3.15/bookmarks/testbookmarks.c	2004-06-01 21:19:08.485590832 +0200
 @@ -133,7 +133,7 @@
  main (int argc, char *argv[])
  {
@@ -146,10 +136,10 @@ diff -urN aa/galeon-1.3.13a/bookmarks/testbookmarks.c galeon-1.3.13a/bookmarks/t
  			       "/.galeon/bookmarks.xbel", NULL);
  	GbBookmarkSet *set;
  	GbFolder *folder1, *folder2, *r;
-diff -urN aa/galeon-1.3.13a/embed/galeon-embed-popup.c galeon-1.3.13a/embed/galeon-embed-popup.c
---- aa/galeon-1.3.13a/embed/galeon-embed-popup.c	2004-03-20 17:43:36.000000000 +0100
-+++ galeon-1.3.13a/embed/galeon-embed-popup.c	2004-03-20 18:28:09.983216568 +0100
-@@ -657,7 +657,7 @@
+diff -urN aa/galeon-1.3.15/embed/galeon-embed-popup.c galeon-1.3.15/embed/galeon-embed-popup.c
+--- aa/galeon-1.3.15/embed/galeon-embed-popup.c	2004-05-22 17:47:11.000000000 +0200
++++ galeon-1.3.15/embed/galeon-embed-popup.c	2004-06-01 21:19:30.278277840 +0200
+@@ -656,7 +656,7 @@
  	persist = galeon_embed_persist_new (popup->priv->embed);
  	
  	base = g_path_get_basename (location);
@@ -158,22 +148,31 @@ diff -urN aa/galeon-1.3.13a/embed/galeon-embed-popup.c galeon-1.3.13a/embed/gale
  				 GALEON_DIR, 
  				 base, NULL);
  	
-diff -urN aa/galeon-1.3.13a/embed/galeon-embed-utils.c galeon-1.3.13a/embed/galeon-embed-utils.c
---- aa/galeon-1.3.13a/embed/galeon-embed-utils.c	2004-03-20 17:43:36.000000000 +0100
-+++ galeon-1.3.13a/embed/galeon-embed-utils.c	2004-03-20 18:28:24.762969704 +0100
-@@ -113,7 +113,7 @@
- 	if (!dirName || dirName[0] == '\0')
- 	{
- 		g_free (dirName);
--		dirName = g_strdup (g_get_home_dir ());
-+		dirName = g_strdup (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir ());
- 	}
- 	else
- 	{
-diff -urN aa/galeon-1.3.13a/embed/global-history.c galeon-1.3.13a/embed/global-history.c
---- aa/galeon-1.3.13a/embed/global-history.c	2004-03-20 17:43:36.000000000 +0100
-+++ galeon-1.3.13a/embed/global-history.c	2004-03-20 18:28:55.182345256 +0100
-@@ -358,7 +358,7 @@
+diff -urN aa/galeon-1.3.15/embed/galeon-embed-utils.c galeon-1.3.15/embed/galeon-embed-utils.c
+--- aa/galeon-1.3.15/embed/galeon-embed-utils.c	2004-05-22 17:47:11.000000000 +0200
++++ galeon-1.3.15/embed/galeon-embed-utils.c	2004-06-01 21:19:44.530111232 +0200
+@@ -240,7 +240,7 @@
+ 	GList *retList = NULL;
+ 
+ 	const gchar *file = NULL;
+-	gchar *path = g_build_filename(g_get_home_dir(),
++	gchar *path = g_build_filename(getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir(),
+ 				       GALEON_DIR, "stylesheets",
+ 				       NULL);
+ 	GDir *dir = g_dir_open(path, 0, NULL);
+@@ -291,7 +291,7 @@
+ 	gchar *utf8_path = NULL;
+ 	gchar *filename = g_filename_from_utf8(sheetfile, -1,
+ 					       NULL, NULL, NULL);
+-	gchar *path = g_build_filename("/", g_get_home_dir(),
++	gchar *path = g_build_filename("/", getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir(),
+ 				       GALEON_DIR, "stylesheets",
+ 				       filename, NULL);
+ 	g_free(filename);
+diff -urN aa/galeon-1.3.15/embed/global-history.c galeon-1.3.15/embed/global-history.c
+--- aa/galeon-1.3.15/embed/global-history.c	2004-04-01 22:01:47.000000000 +0200
++++ galeon-1.3.15/embed/global-history.c	2004-06-01 21:19:24.149209600 +0200
+@@ -356,7 +356,7 @@
          gchar *histfile;
  
  	/* build the filename */
@@ -182,7 +181,7 @@ diff -urN aa/galeon-1.3.13a/embed/global-history.c galeon-1.3.13a/embed/global-h
  				     "history.xml", NULL);
  	
  	/* build the initial history hash table */
-@@ -564,7 +564,7 @@
+@@ -504,7 +504,7 @@
  		return;
  	}
  
@@ -191,9 +190,9 @@ diff -urN aa/galeon-1.3.13a/embed/global-history.c galeon-1.3.13a/embed/global-h
  				     GALEON_DIR,
  				     "history.xml",
  				     NULL);
-diff -urN aa/galeon-1.3.13a/galeon-config-tool.in galeon-1.3.13a/galeon-config-tool.in
---- aa/galeon-1.3.13a/galeon-config-tool.in	2002-03-14 08:40:24.000000000 +0100
-+++ galeon-1.3.13a/galeon-config-tool.in	2004-03-20 18:37:51.238852280 +0100
+diff -urN aa/galeon-1.3.15/galeon-config-tool.in galeon-1.3.15/galeon-config-tool.in
+--- aa/galeon-1.3.15/galeon-config-tool.in	2002-03-14 08:40:24.000000000 +0100
++++ galeon-1.3.15/galeon-config-tool.in	2004-06-01 21:24:52.170342808 +0200
 @@ -44,6 +44,21 @@
  		    echo "Removing $HOME/.gnome/accels/galeon"
  		    rm -rf $HOME/.gnome/accels/galeon
@@ -210,57 +209,16 @@ diff -urN aa/galeon-1.3.13a/galeon-config-tool.in galeon-1.3.13a/galeon-config-t
 +
 +					echo "Removing $HOME_ETC/.gnome/accels/galeon"
 +					rm -rf $HOME_ETC/.gnome/accels/galeon
-+					
++
 +				fi
 +
  		    echo "...Done."
  
  	    else
-diff -urN aa/galeon-1.3.13a/mozilla/ContentHandler.cpp galeon-1.3.13a/mozilla/ContentHandler.cpp
---- aa/galeon-1.3.13a/mozilla/ContentHandler.cpp	2004-03-20 17:43:37.000000000 +0100
-+++ galeon-1.3.13a/mozilla/ContentHandler.cpp	2004-03-20 18:39:44.462639648 +0100
-@@ -305,6 +305,7 @@
- 						   nsILocalFile **_retval)
- {
- 	nsresult rv;
-+	gchar *home_etc = getenv("HOME_ETC");
- 
- 	mContext = aWindowContext;
- 
-@@ -329,7 +330,7 @@
- 	if (!dirName || dirName[0] == '\0')
- 	{
- 		g_free (dirName);
--		dirName = g_strdup (g_get_home_dir ());
-+		dirName = g_strdup (home_etc ? home_etc : g_get_home_dir ());
- 	}
- 	else
- 	{
-@@ -349,7 +350,7 @@
- 	    !g_file_test (expanded_directory, G_FILE_TEST_IS_DIR))
- 	{
- 		g_free (expanded_directory);
--		expanded_directory = g_strdup (g_get_home_dir());
-+		expanded_directory = g_strdup (home_etc ? home_etc : g_get_home_dir());
- 	}
- 
- 	nsCOMPtr<nsILocalFile> saveDir = do_CreateInstance (NS_LOCAL_FILE_CONTRACTID);
-diff -urN aa/galeon-1.3.13a/mozilla/FilePicker.cpp galeon-1.3.13a/mozilla/FilePicker.cpp
---- aa/galeon-1.3.13a/mozilla/FilePicker.cpp	2004-03-20 17:43:37.000000000 +0100
-+++ galeon-1.3.13a/mozilla/FilePicker.cpp	2004-03-20 18:30:33.183446824 +0100
-@@ -94,7 +94,7 @@
- 	if (!dirName || dirName[0] == '\0')
- 	{
- 		g_free (dirName);
--		dirName = g_filename_to_utf8 (g_get_home_dir(), -1,
-+		dirName = g_filename_to_utf8 (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir(), -1,
- 					      NULL, NULL, NULL);
- 	}
- 
-diff -urN aa/galeon-1.3.13a/mozilla/mozilla-embed-shell.cpp galeon-1.3.13a/mozilla/mozilla-embed-shell.cpp
---- aa/galeon-1.3.13a/mozilla/mozilla-embed-shell.cpp	2004-03-20 17:43:37.000000000 +0100
-+++ galeon-1.3.13a/mozilla/mozilla-embed-shell.cpp	2004-03-20 18:31:48.876939664 +0100
-@@ -336,7 +336,7 @@
+diff -urN aa/galeon-1.3.15/mozilla/mozilla-embed-shell.cpp galeon-1.3.15/mozilla/mozilla-embed-shell.cpp
+--- aa/galeon-1.3.15/mozilla/mozilla-embed-shell.cpp	2004-05-02 18:39:17.000000000 +0200
++++ galeon-1.3.15/mozilla/mozilla-embed-shell.cpp	2004-06-01 21:19:50.459209872 +0200
+@@ -324,7 +324,7 @@
  mozilla_init_profile (void)
  {
  	char *profile_path;
@@ -269,18 +227,9 @@ diff -urN aa/galeon-1.3.13a/mozilla/mozilla-embed-shell.cpp galeon-1.3.13a/mozil
  					 MOZILLA_PROFILE_DIR, 
  					 NULL);
          gtk_moz_embed_set_profile_path (profile_path, MOZILLA_PROFILE_NAME);
-@@ -1098,7 +1098,7 @@
-             !g_file_test (expanded_directory, G_FILE_TEST_IS_DIR))
-         {
-                 if (expanded_directory) g_free (expanded_directory);
--                expanded_directory = g_strdup (g_get_home_dir());
-+                expanded_directory = g_strdup (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir());
-         }
- 
-         nsCOMPtr<nsILocalFile> dir = 
-diff -urN aa/galeon-1.3.13a/mozilla/MyportalProtocolHandler.cpp galeon-1.3.13a/mozilla/MyportalProtocolHandler.cpp
---- aa/galeon-1.3.13a/mozilla/MyportalProtocolHandler.cpp	2004-03-20 17:43:37.000000000 +0100
-+++ galeon-1.3.13a/mozilla/MyportalProtocolHandler.cpp	2004-03-20 18:30:44.579714328 +0100
+diff -urN aa/galeon-1.3.15/mozilla/MyportalProtocolHandler.cpp galeon-1.3.15/mozilla/MyportalProtocolHandler.cpp
+--- aa/galeon-1.3.15/mozilla/MyportalProtocolHandler.cpp	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/mozilla/MyportalProtocolHandler.cpp	2004-06-01 21:19:57.209183720 +0200
 @@ -205,7 +205,7 @@
  	
  	/* open the rendering stream */
@@ -290,9 +239,9 @@ diff -urN aa/galeon-1.3.13a/mozilla/MyportalProtocolHandler.cpp galeon-1.3.13a/m
  				       "/.galeon/myportal.html",
  				       NULL);
  	gchar *myportalURI = g_strconcat ("file://",filename, NULL);
-diff -urN aa/galeon-1.3.13a/mozilla/PrintProgressListener.cpp galeon-1.3.13a/mozilla/PrintProgressListener.cpp
---- aa/galeon-1.3.13a/mozilla/PrintProgressListener.cpp	2002-05-27 03:36:44.000000000 +0200
-+++ galeon-1.3.13a/mozilla/PrintProgressListener.cpp	2004-03-20 19:06:21.690824056 +0100
+diff -urN aa/galeon-1.3.15/mozilla/PrintProgressListener.cpp galeon-1.3.15/mozilla/PrintProgressListener.cpp
+--- aa/galeon-1.3.15/mozilla/PrintProgressListener.cpp	2002-05-27 03:36:44.000000000 +0200
++++ galeon-1.3.15/mozilla/PrintProgressListener.cpp	2004-06-01 21:34:31.152324168 +0200
 @@ -20,6 +20,7 @@
  
  /* see the FIXME below */
@@ -310,9 +259,21 @@ diff -urN aa/galeon-1.3.13a/mozilla/PrintProgressListener.cpp galeon-1.3.13a/moz
  			gnome_vfs_mime_application_free (app);
  			g_free (command);
  		}
-diff -urN aa/galeon-1.3.13a/mozilla/SideBar.cpp galeon-1.3.13a/mozilla/SideBar.cpp
---- aa/galeon-1.3.13a/mozilla/SideBar.cpp	2004-03-20 17:43:37.000000000 +0100
-+++ galeon-1.3.13a/mozilla/SideBar.cpp	2004-03-20 18:31:23.398812928 +0100
+diff -urN aa/galeon-1.3.15/mozilla/ProgressListener.cpp galeon-1.3.15/mozilla/ProgressListener.cpp
+--- aa/galeon-1.3.15/mozilla/ProgressListener.cpp	2004-05-22 17:47:11.000000000 +0200
++++ galeon-1.3.15/mozilla/ProgressListener.cpp	2004-06-01 21:20:13.728672376 +0200
+@@ -842,7 +842,7 @@
+ 	    !g_file_test (dirName, G_FILE_TEST_IS_DIR))
+ 	{
+ 		g_free (dirName);
+-		dirName = g_strdup (g_get_home_dir ());
++		dirName = g_strdup (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir ());
+ 	}
+ 
+ 
+diff -urN aa/galeon-1.3.15/mozilla/SideBar.cpp galeon-1.3.15/mozilla/SideBar.cpp
+--- aa/galeon-1.3.15/mozilla/SideBar.cpp	2004-03-16 22:49:10.000000000 +0100
++++ galeon-1.3.15/mozilla/SideBar.cpp	2004-06-01 21:20:22.307368216 +0200
 @@ -262,7 +262,7 @@
  
  void GSidebar::LoadSidebarPages(void)
@@ -331,36 +292,27 @@ diff -urN aa/galeon-1.3.13a/mozilla/SideBar.cpp galeon-1.3.13a/mozilla/SideBar.c
  					    GALEON_DIR"/sidebars.xml",
  					    NULL);
  
-diff -urN aa/galeon-1.3.13a/src/galeon-favicon-cache.c galeon-1.3.13a/src/galeon-favicon-cache.c
---- aa/galeon-1.3.13a/src/galeon-favicon-cache.c	2004-03-20 17:45:05.000000000 +0100
-+++ galeon-1.3.13a/src/galeon-favicon-cache.c	2004-03-20 18:33:55.330715768 +0100
-@@ -116,6 +116,8 @@
- static void
- galeon_favicon_cache_init (GaleonFaviconCache *cache)
- {
-+	gchar *home_etc = getenv("HOME_ETC");
-+	
- 	cache->priv = g_new0 (GaleonFaviconCachePrivate, 1);
- 
- 	cache->priv->url_to_pixbuf     = g_hash_table_new_full (g_str_hash,
-@@ -127,11 +129,11 @@
+diff -urN aa/galeon-1.3.15/src/galeon-favicon-cache.c galeon-1.3.15/src/galeon-favicon-cache.c
+--- aa/galeon-1.3.15/src/galeon-favicon-cache.c	2004-05-19 21:39:39.000000000 +0200
++++ galeon-1.3.15/src/galeon-favicon-cache.c	2004-06-01 21:20:38.018979688 +0200
+@@ -128,11 +128,11 @@
  								(GDestroyNotify) g_free,
  								(GDestroyNotify) g_object_unref);
  
 -	cache->priv->filename  = g_build_filename (g_get_home_dir (),
-+	cache->priv->filename  = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
++	cache->priv->filename  = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (),
  				                   GALEON_DIR,
  				                   "favicon_cache.xml",
  				                   NULL);
 -	cache->priv->directory = g_build_filename (g_get_home_dir (),
-+	cache->priv->directory = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
++	cache->priv->directory = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (),
  						   GALEON_DIR,
  						   "favicon_cache/",
  						   NULL);
-diff -urN aa/galeon-1.3.13a/src/galeon-popup.c galeon-1.3.13a/src/galeon-popup.c
---- aa/galeon-1.3.13a/src/galeon-popup.c	2004-03-20 17:45:06.000000000 +0100
-+++ galeon-1.3.13a/src/galeon-popup.c	2004-03-20 18:34:06.987943600 +0100
-@@ -902,7 +902,7 @@
+diff -urN aa/galeon-1.3.15/src/galeon-popup.c galeon-1.3.15/src/galeon-popup.c
+--- aa/galeon-1.3.15/src/galeon-popup.c	2004-05-22 17:47:12.000000000 +0200
++++ galeon-1.3.15/src/galeon-popup.c	2004-06-01 21:20:50.895022232 +0200
+@@ -898,7 +898,7 @@
  	persist = galeon_embed_persist_new (popup->priv->embed);
  	
  	base = g_path_get_basename (location);
@@ -369,9 +321,9 @@ diff -urN aa/galeon-1.3.13a/src/galeon-popup.c galeon-1.3.13a/src/galeon-popup.c
  				 GALEON_DIR, 
  				 base, NULL);
  	
-diff -urN aa/galeon-1.3.13a/src/galeon-shell.c galeon-1.3.13a/src/galeon-shell.c
---- aa/galeon-1.3.13a/src/galeon-shell.c	2004-03-20 17:45:06.000000000 +0100
-+++ galeon-1.3.13a/src/galeon-shell.c	2004-03-20 18:32:10.894592472 +0100
+diff -urN aa/galeon-1.3.15/src/galeon-shell.c galeon-1.3.15/src/galeon-shell.c
+--- aa/galeon-1.3.15/src/galeon-shell.c	2004-05-31 00:44:33.000000000 +0200
++++ galeon-1.3.15/src/galeon-shell.c	2004-06-01 21:20:31.724936528 +0200
 @@ -312,7 +312,7 @@
  
  	if (gs->priv->toolbars_model)
@@ -390,9 +342,9 @@ diff -urN aa/galeon-1.3.13a/src/galeon-shell.c galeon-1.3.13a/src/galeon-shell.c
  				       GALEON_DIR "/bookmarks.xbel", NULL);
  	
  	/* init the bookmark icon provider */
-diff -urN aa/galeon-1.3.13a/src/migrate.c galeon-1.3.13a/src/migrate.c
---- aa/galeon-1.3.13a/src/migrate.c	2004-03-20 17:45:08.000000000 +0100
-+++ galeon-1.3.13a/src/migrate.c	2004-03-20 18:32:20.665107128 +0100
+diff -urN aa/galeon-1.3.15/src/migrate.c galeon-1.3.15/src/migrate.c
+--- aa/galeon-1.3.15/src/migrate.c	2004-02-07 23:15:39.000000000 +0100
++++ galeon-1.3.15/src/migrate.c	2004-06-01 21:20:54.374493272 +0200
 @@ -247,7 +247,7 @@
  static void
  migrate_toolbar ()
@@ -402,21 +354,15 @@ diff -urN aa/galeon-1.3.13a/src/migrate.c galeon-1.3.13a/src/migrate.c
  					   GALEON_DIR, "toolbars.xml", NULL);
  
  	gchar *toolbar;
-diff -urN aa/galeon-1.3.13a/src/session.c galeon-1.3.13a/src/session.c
---- aa/galeon-1.3.13a/src/session.c	2004-03-20 17:45:09.000000000 +0100
-+++ galeon-1.3.13a/src/session.c	2004-03-20 18:33:09.863627816 +0100
-@@ -160,19 +160,20 @@
- get_session_filename (const char *filename)
- {
- 	char *save_to;
-+	char *home_etc = getenv("HOME_ETC");
- 	
- 	g_return_val_if_fail (filename != NULL, NULL);
+diff -urN aa/galeon-1.3.15/src/session.c galeon-1.3.15/src/session.c
+--- aa/galeon-1.3.15/src/session.c	2004-03-30 23:33:05.000000000 +0200
++++ galeon-1.3.15/src/session.c	2004-06-01 21:20:46.722656528 +0200
+@@ -165,14 +165,14 @@
  
  	if (strcmp (filename, SESSION_SAVED) == 0)
  	{
 -		save_to = g_build_filename (g_get_home_dir (),
-+		save_to = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
++		save_to = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (),
  					    GALEON_DIR,
  					    "session_saved.xml",
  					    NULL);
@@ -424,22 +370,22 @@ diff -urN aa/galeon-1.3.13a/src/session.c galeon-1.3.13a/src/session.c
  	else if (strcmp (filename, SESSION_CRASHED) == 0)
  	{
 -		save_to = g_build_filename (g_get_home_dir (),
-+		save_to = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
++		save_to = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (),
  					    GALEON_DIR,
  					    "session_crashed.xml",
  					    NULL);
-@@ -181,7 +182,7 @@
+@@ -181,7 +181,7 @@
  	{
  		char *tmp;
  		
 -		save_to = g_build_filename (g_get_home_dir (),
-+		save_to = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
++		save_to = g_build_filename (getenv("HOME_ETC") ? getenv("HOME_ETC") : g_get_home_dir (),
  					    GALEON_DIR,
  					    "session_gnome-XXXXXX",
  					    NULL);
-diff -urN aa/galeon-1.3.13a/utils/gul-download.c galeon-1.3.13a/utils/gul-download.c
---- aa/galeon-1.3.13a/utils/gul-download.c	2004-03-20 17:45:12.000000000 +0100
-+++ galeon-1.3.13a/utils/gul-download.c	2004-03-20 18:34:32.141119736 +0100
+diff -urN aa/galeon-1.3.15/utils/gul-download.c galeon-1.3.15/utils/gul-download.c
+--- aa/galeon-1.3.15/utils/gul-download.c	2004-03-30 23:33:06.000000000 +0200
++++ galeon-1.3.15/utils/gul-download.c	2004-06-01 21:21:03.541099736 +0200
 @@ -74,7 +74,7 @@
  		prefDir = eel_gconf_get_string(CONF_DOWNLOADING_DIR);
  		if (!prefDir)
@@ -458,9 +404,9 @@ diff -urN aa/galeon-1.3.13a/utils/gul-download.c galeon-1.3.13a/utils/gul-downlo
  	}
  
  	/* Dirname must be locale encoded as explained above */
-diff -urN aa/galeon-1.3.13a/utils/gul-general.c galeon-1.3.13a/utils/gul-general.c
---- aa/galeon-1.3.13a/utils/gul-general.c	2004-03-20 17:45:12.000000000 +0100
-+++ galeon-1.3.13a/utils/gul-general.c	2004-03-20 18:34:43.654369456 +0100
+diff -urN aa/galeon-1.3.15/utils/gul-general.c galeon-1.3.15/utils/gul-general.c
+--- aa/galeon-1.3.15/utils/gul-general.c	2004-03-30 23:33:06.000000000 +0200
++++ galeon-1.3.15/utils/gul-general.c	2004-06-01 21:21:08.278379560 +0200
 @@ -178,7 +178,7 @@
  	}
  
@@ -470,9 +416,9 @@ diff -urN aa/galeon-1.3.13a/utils/gul-general.c galeon-1.3.13a/utils/gul-general
  	
  	/* success? */
  	if (g_file_test (file, G_FILE_TEST_EXISTS))
-diff -urN aa/galeon-1.3.13a/utils/gul-state.c galeon-1.3.13a/utils/gul-state.c
---- aa/galeon-1.3.13a/utils/gul-state.c	2004-03-20 17:45:12.000000000 +0100
-+++ galeon-1.3.13a/utils/gul-state.c	2004-03-20 18:34:54.791676328 +0100
+diff -urN aa/galeon-1.3.15/utils/gul-state.c galeon-1.3.15/utils/gul-state.c
+--- aa/galeon-1.3.15/utils/gul-state.c	2004-03-29 23:55:56.000000000 +0200
++++ galeon-1.3.15/utils/gul-state.c	2004-06-01 21:21:13.146639472 +0200
 @@ -53,7 +53,7 @@
  	char *config_prefix;
  
@@ -482,9 +428,9 @@ diff -urN aa/galeon-1.3.13a/utils/gul-state.c galeon-1.3.13a/utils/gul-state.c
  			               ".galeon", "state.ini", NULL);
  
  	config_prefix = g_strconcat ("=", state_file, "=/", NULL);
-diff -urN aa/galeon-1.3.13a/utils/gul-string.c galeon-1.3.13a/utils/gul-string.c
---- aa/galeon-1.3.13a/utils/gul-string.c	2004-03-20 17:45:12.000000000 +0100
-+++ galeon-1.3.13a/utils/gul-string.c	2004-03-20 18:35:07.199790008 +0100
+diff -urN aa/galeon-1.3.15/utils/gul-string.c galeon-1.3.15/utils/gul-string.c
+--- aa/galeon-1.3.15/utils/gul-string.c	2004-03-30 23:33:06.000000000 +0200
++++ galeon-1.3.15/utils/gul-string.c	2004-06-01 21:21:18.310854392 +0200
 @@ -315,7 +315,7 @@
          if (!str) return NULL;
          if (str[0] != '~') return g_strdup (str);
