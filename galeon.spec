@@ -12,6 +12,7 @@ Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mozilla_five_home.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	GConf >= 1.0.4-1
+Requires:	mozilla-embedded >= 0.9.5-1
 BuildRequires:	GConf-devel >= 1.0.4-1
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
