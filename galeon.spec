@@ -1,5 +1,5 @@
 
-%define		minmozver	1.2
+%define		minmozver	1.0.2
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -86,7 +86,7 @@ xml-i18n-toolize --copy --force
 	--disable-included-gettext \
 	--disable-install-schemas \
 	--disable-werror \
-	--with-mozilla-snapshot=1.2 \
+	--with-mozilla-snapshot=1.0 \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=no
 
@@ -113,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /usr/bin/scrollkeeper-update
 umask 022
-rm -f %{_libdir}/mozilla/components/{compreg,xpti}.dat
+rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 gconftool --shutdown
 GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
