@@ -1,15 +1,15 @@
 diff -urN galeon-0.12pre1/src/main.c new/galeon-0.12pre1/src/main.c
 --- galeon-0.12pre1/src/main.c	Sun Aug  5 17:57:58 2001
 +++ galeon-0.12pre1/src/main.c	Tue Aug  7 15:49:44 2001
-@@ -44,6 +44,7 @@
+@@ -49,6 +49,7 @@
+ #ifdef ENABLE_APPLET
  #include <applet-widget.h>
  #endif
- 
 +#include <stdlib.h>
- #include <errno.h>
- 
- /* local function prototypes */
-@@ -144,6 +145,10 @@
+ #ifdef ENABLE_GNOME_FILE_SELECTOR
+ #include <bonobo/bonobo-main.h>
+ #endif /* !ENABLE_GNOME_FILE_SELECTOR */
+@@ -182,6 +183,10 @@
  	gint i, n_urls;
  	gchar **url;
  
