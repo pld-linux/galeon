@@ -7,7 +7,7 @@ Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.2.7
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -35,7 +35,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	oaf-devel >= 0.6.2
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.6i
 BuildRequires:	scrollkeeper
 Requires:	GConf >= 1.0.4-1
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
