@@ -36,7 +36,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	oaf-devel >= 0.6.2
-BuildRequires:	openssl-devel >= 0.9.6i
+BuildRequires:	openssl-devel >= 0.9.6m
 BuildRequires:	scrollkeeper
 Requires:	GConf >= 1.0.4-1
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
