@@ -52,6 +52,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir	/etc/X11/GNOME
 %define         _omf_dest_dir   %(scrollkeeper-config --omfdir)
 
+# supports 1.0, 1.1, 1.2 or trunk (1.3)
+%define	mozsnap	%(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded | sed -e 's/^\([0-9]\.[0-9]\).*/\1/;s/^1\.3$/trunk/')
+
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
 
@@ -113,7 +116,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /usr/bin/scrollkeeper-update
 umask 022
-rm -f %{_libdir}/mozilla/components/{compreg,xpti}.dat
+rm -f %{_libdir}/mozilla/{component.reg,components/{compreg,xpti}.dat}
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 gconftool --shutdown
 GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
