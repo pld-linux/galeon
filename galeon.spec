@@ -8,19 +8,18 @@ Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/galeon/%{name}-%{version}.tar.gz
-Patch0:		%{name}-makefile.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla
+BuildRequires:	GConf-devel
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-libs-devel >= 1.2.0
+BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	mozilla-devel
-BuildRequires:  gnome-vfs-devel >= 0.5
-BuildRequires:  GConf-devel
-BuildRequires:  oaf >= 0.6.2
+BuildRequires:	oaf >= 0.6.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -35,7 +34,6 @@ interpretacji stron Mozilli).
 
 %prep
 %setup -q
-%patch0 -p1
 
 %build
 gettextize --copy --force
@@ -53,7 +51,9 @@ gettextize --copy --force
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	Networkdir=%{_applnkdir}/Network/WWW
 
 gzip -9nf AUTHORS ChangeLog NEWS README
 
