@@ -15,21 +15,19 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.17
-Release:	3
+Version:	1.3.18
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	781ac1c9e15fa4c2b367b195e78d1ab2
+# Source0-md5:	d04164ebf26c65fdfd23fc1278edfce1
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-locale-names.patch
-Patch3:		%{name}-po.patch
-Patch4:		%{name}-mozilla.patch
-Patch5:		%{name}-mozilla173.patch
+Patch2:		%{name}-po.patch
+Patch3:		%{name}-mozilla.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -83,10 +81,6 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
-
-mv po/{no,nb}.po
 
 # regenerate - didn't compile with ORBit2 2.7.2
 cd idl
@@ -123,6 +117,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
 rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
+
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 # galeon-2.0.mo, but gnome/help/galeon
 %find_lang galeon-2.0 --with-gnome --all-name
