@@ -18,7 +18,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	gnome-core-devel >= 1.2.0
 BuildRequires:	gnome-libs-devel >= 1.2.0
 BuildRequires:	gnome-vfs-devel >= 0.5
-BuildRequires:	xml-i18n-tools
+BuildRequires:	intltool
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml-devel >= 1.8.7
@@ -49,13 +49,17 @@ O galeon é um browser para o gnome baseado no mozilla.
 %patch0 -p1
 
 %build
-#sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in >configure.in.tmp
+sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in >configure.in.tmp
+# FIXME: Broken GCONF?
+sed -e s/AM_GCONF_SOURCE/echo/ configure.in.tmp >configure.in
 #mv -f configure.in.tmp configure.in
-#rm -f missing
-#aclocal -I %{_aclocaldir}/gnome
-#autoconf
-#automake -a -c
-%configure2_13 \
+rm -f missing
+xml-i18n-toolize --copy --force
+gettextize --copy --force
+aclocal -I %{_aclocaldir}/gnome
+autoconf
+automake -a -c
+%configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
 	--with-mozilla-home=%{_libdir}/mozilla \
