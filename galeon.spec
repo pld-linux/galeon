@@ -45,7 +45,7 @@ interpretacji stron Mozilli).
 %patch0 -p1
 
 %build
-%configure \
+%configure2_13 \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
 	--with-mozilla-home=%{_libdir}/mozilla \
