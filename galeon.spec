@@ -18,7 +18,7 @@ BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	mozilla-devel
+BuildRequires:	mozilla-devel >= 0.8
 BuildRequires:	oaf >= 0.6.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
