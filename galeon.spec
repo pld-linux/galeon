@@ -8,10 +8,13 @@ Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
+Group(es):	X11/Aplicaciones/Red
+Group(fr):	X11/Applications/Réseau
 Group(pl):	X11/Aplikacje/Sieciowe
-# This HTTP URL does not support continuation
-# Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
-Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/galeon/%{name}-%{version}.tar.gz
+Group(pt_BR):	X11/Aplicações/Rede
+Group(pt):	X11/Aplicações/Rede
+Group(ru):	X11/ðÒÉÌÏÖÅÎÉÑ/óÅÔÅ×ÙÅ
+Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mozilla_five_home.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf-devel >= 1.0.4-1
@@ -29,7 +32,7 @@ BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-devel >= 0.9.8
 BuildRequires:	oaf >= 0.6.2
 BuildRequires:	oaf-devel >= 0.6.2
-Requires:		GConf >= 1.0.4-1
+Requires:	GConf >= 1.0.4-1
 %requires_eq	mozilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
