@@ -33,6 +33,9 @@ Requires:	GConf >= 1.0.4-1
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+# can be provided by mozilla or mozilla-embedded
+%define		_noautoreqdep	libgtkembedmoz.so libplds4.so libplc4.so libnspr4.so libgtksuperwin.so libxpcom.so
+
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME
