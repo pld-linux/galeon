@@ -22,6 +22,7 @@ Group:		X11/Applications/Networking
 Source0:	http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	1707493228c2174e8ecd856789506ecd
 Source1:	%{name}-config-tool.1
+Patch0:		%{name}-desktop.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.0.0
 BuildRequires:	ORBit2-devel >= 2.7.5-1
@@ -70,6 +71,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 
 %prep
 %setup -q
+%patch0 -p1
 
 # regenerate - didn't compile with ORBit2 2.7.2
 cd idl
