@@ -1,0 +1,111 @@
+diff -urN galeon-1.2.99.orig/bookmarks/default-bookmarks.xbel galeon-1.2.99/bookmarks/default-bookmarks.xbel
+--- galeon-1.2.99.orig/bookmarks/default-bookmarks.xbel	Sun Oct 27 14:31:59 2002
++++ galeon-1.2.99/bookmarks/default-bookmarks.xbel	Sun Oct 27 14:33:53 2002
+@@ -120,7 +120,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>google</nick>
+-          <pixmap>/usr/share/galeon/google.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/google.png</pixmap>
+           <time_modified>1019395979</time_modified>
+           <smarturl>http://www.google.com/search?q=%s</smarturl>
+         </metadata>
+@@ -131,7 +131,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>news</nick>
+-          <pixmap>/usr/share/galeon/google_groups.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/google_groups.png</pixmap>
+           <time_modified>1019396061</time_modified>
+           <smarturl>http://groups.google.com/groups?q=%s&amp;meta=site%3Dgroups</smarturl>
+         </metadata>
+@@ -142,7 +142,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>img</nick>
+-          <pixmap>/usr/share/galeon/google_images.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/google_images.png</pixmap>
+           <time_modified>1019396107</time_modified>
+           <smarturl>http://images.google.com/images?q=%s</smarturl>
+         </metadata>
+@@ -183,7 +183,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>google</nick>
+-          <pixmap>/usr/share/galeon/google.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/google.png</pixmap>
+           <smarturl>http://www.google.com/search?q=%s</smarturl>
+         </metadata>
+       </info>
+@@ -193,7 +193,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>news</nick>
+-          <pixmap>/usr/share/galeon/google_groups.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/google_groups.png</pixmap>
+           <smarturl>http://groups.google.com/groups?q=%s&amp;meta=site%3Dgroups</smarturl>
+         </metadata>
+       </info>
+@@ -203,7 +203,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>img</nick>
+-          <pixmap>/usr/share/galeon/google_images.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/google_images.png</pixmap>
+           <smarturl>http://images.google.com/images?q=%s</smarturl>
+         </metadata>
+       </info>
+@@ -240,7 +240,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>linuxpackages</nick>
+-          <pixmap>/usr/share/galeon/slack.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/slack.png</pixmap>
+           <smarturl>http://www.linuxpackages.net/search_view.php?by=name&amp;what_cat=&amp;subcat=&amp;ver=8&amp;name=%s</smarturl>
+         </metadata>
+       </info>
+@@ -250,7 +250,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>st</nick>
+-          <pixmap>/usr/share/galeon/stocks.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/stocks.png</pixmap>
+           <smarturl>http://finance.yahoo.com/q?s=%s&amp;d=c&amp;k=c4&amp;t=1d</smarturl>
+         </metadata>
+       </info>
+@@ -260,7 +260,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>bug</nick>
+-          <pixmap>/usr/share/galeon/bug.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/bug.png</pixmap>
+           <smarturl>http://bugzilla.gnome.org/show_bug.cgi?id=%s</smarturl>
+         </metadata>
+       </info>
+@@ -270,7 +270,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>fm</nick>
+-          <pixmap>/usr/share/galeon/freshmeat.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/freshmeat.png</pixmap>
+           <smarturl>http://freshmeat.net/search?q=%s</smarturl>
+         </metadata>
+       </info>
+@@ -280,7 +280,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>rpm</nick>
+-          <pixmap>/usr/share/galeon/rpm.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/rpm.png</pixmap>
+           <smarturl>http://rpmfind.net/linux/rpm2html/search.php?query=%s</smarturl>
+         </metadata>
+       </info>
+@@ -290,7 +290,7 @@
+       <info>
+         <metadata owner="http://galeon.sourceforge.net/">
+           <nick>deb</nick>
+-          <pixmap>/usr/share/galeon/debian.png</pixmap>
++          <pixmap>/usr/X11R6/share/galeon/debian.png</pixmap>
+           <smarturl>http://packages.debian.org/cgi-bin/search_packages.pl?keywords=%s&amp;searchon=names&amp;subword=1&amp;version=all&amp;release=all</smarturl>
+         </metadata>
+       </info>
