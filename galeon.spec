@@ -115,7 +115,7 @@ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/
 
 %files -f galeon-2.0.lang
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog NEWS README
+%doc AUTHORS ChangeLog NEWS README*
 %attr(755,root,root) %{_bindir}/*
 #%{_applnkdir}/Network/WWW/*
 %{_libdir}/%{name}
