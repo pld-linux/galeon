@@ -8,7 +8,7 @@
 			# have to install mozilla compiled with gcc2.
 #
 %define		minmozver	5:1.6
-%define		snap	20040117
+%define		snap	20040320
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -16,13 +16,13 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.13a
-Release:	2
+Release:	2.%{snap}.1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	c29bdfb23fdafddfcfb6ae7fc6c822fd
-#Source0:	%{name}-%{version}-%{snap}.tar.bz2
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	92d333b32e791a58b4e701ed8f512a2c
+#Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
@@ -45,7 +45,6 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	mozilla-devel >= %{minmozver}
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
-BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
@@ -73,7 +72,7 @@ interpretacji stron Mozilli).
 O galeon é um browser para o GNOME baseado no mozilla.
 
 %prep
-%setup -q -n %{name}-1.3.13
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -87,6 +86,7 @@ mv Galeon*.[ch] ../src
 
 %build
 rm -f missing
+cp /usr/share/automake/mkinstalldirs .
 glib-gettextize --copy --force
 intltoolize --copy --force
 %{__libtoolize}
@@ -102,7 +102,6 @@ intltoolize --copy --force
 	--enable-nautilus-view=no
 	%endif
 	
-
 %{__make}
 
 %install
