@@ -5,7 +5,7 @@
 #			  mozilla instead. To compile wit this option, You
 #			  have to install mozilla compiled with gcc2.
 #
-%define		minmozver	1.5b
+%define		minmozver	4:1.5b
 %define		snap	20030905
 
 Summary:	Galeon - gecko-based GNOME web browser
