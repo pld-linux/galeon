@@ -60,9 +60,11 @@ O galeon é um browser para o gnome baseado no mozilla.
 
 %build
 rm -f missing
+glib-gettextize --copy --force
 xml-i18n-toolize --copy --force
-gettextize --copy --force
+libtoolize --copy --force
 aclocal -I %{_aclocaldir}/gnome2-macros
+autoheader
 %{__autoconf}
 %{__automake}
 #%if %{_gcc_ver} > 2
