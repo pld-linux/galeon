@@ -5,8 +5,8 @@
 #			  mozilla instead. To compile wit this option, You
 #			  have to install mozilla compiled with gcc2.
 #
-%define		minmozver	4:1.5b
-%define		snap	20030905
+%define		minmozver	5:1.5
+%define		snap	20031025
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -14,17 +14,16 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.9
-Release:	3
+Release:	3.%{snap}.1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-#Source0:	%{name}-%{version}-%{snap}.tar.bz2
-Source0:	http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	f948047373884a0dc8d841930d11680c
+Source0:	%{name}-%{version}-%{snap}.tar.bz2
+# Source0-md5:	48cbd264e9efb3cb0e3322bf4603e8bc
+#Source0:	http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
 Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-history-xml.patch
 BuildRequires:	GConf2-devel >= 2.0.0
 BuildRequires:	ORBit2-devel >= 2.7.5-1
 BuildRequires:	autoconf
@@ -73,7 +72,6 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 # regenerate - didn't compile with ORBit2 2.7.2
 cd idl
