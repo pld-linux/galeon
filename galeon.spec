@@ -15,19 +15,20 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.16
-Release:	3
+Version:	1.3.17
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	539f8c4672a7e7448745f35110ec1529
+# Source0-md5:	781ac1c9e15fa4c2b367b195e78d1ab2
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-locale-names.patch
 Patch3:		%{name}-po.patch
+Patch4:		%{name}-mozilla.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -35,9 +36,9 @@ BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.4.2
+BuildRequires:	glib2-devel >= 1:2.4.4
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
-BuildRequires:	gtk+2-devel >= 2:2.4.3
+BuildRequires:	gtk+2-devel >= 2:2.4.4
 BuildRequires:	intltool
 BuildRequires:	libbonoboui-devel >= 2.4.0
 BuildRequires:	libglade2-devel >= 1:2.4.0
@@ -51,8 +52,8 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
-Requires:	glib2 >= 1:2.4.2
-Requires:	gtk+2 >= 2:2.4.3
+Requires:	glib2 >= 1:2.4.4
+Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
 Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -81,6 +82,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 mv po/{no,nb}.po
 
