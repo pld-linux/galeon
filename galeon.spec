@@ -45,7 +45,7 @@ BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	mozilla-devel >= %{minmozver}
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
-BuildRequires:	openssl-devel >= 0.9.7c
+BuildRequires:	openssl-devel >= 0.9.7d
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
