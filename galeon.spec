@@ -1,6 +1,6 @@
 
 %define		minmozver	1.2
-%define		snap		20021116
+%define		snap		20021127
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -37,6 +37,7 @@ BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel
 BuildRequires:	scrollkeeper
 BuildRequires:	bonobo-activation >= 2.1.0
+BuildRequires:	rpm-build >= 4.1-7
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 Requires(post):	GConf2
 Requires(post):	mozilla
@@ -49,6 +50,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
+%define		_serverdir	/usr/lib/bonobo/servers
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -83,7 +85,7 @@ libtoolize --copy --force
 	--disable-included-gettext \
 	--disable-install-schemas \
 	--disable-werror \
-	--with-mozilla-snapshot=trunk \
+	--with-mozilla-snapshot=1.2 \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=yes
 
@@ -96,9 +98,8 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Networkdir=%{_applnkdir}/Network/WWW \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
-
-#mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
+	omf_dest_dir=%{_omf_dest_dir}/%{name} \
+	serverdir=%{_serverdir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
@@ -112,7 +113,7 @@ rm -rf $RPM_BUILD_ROOT
 umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
-GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas >/dev/null
+%gconf_schema_install
 
 %postun -p /usr/bin/scrollkeeper-update
 
@@ -120,9 +121,8 @@ GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README*
 %attr(755,root,root) %{_bindir}/*
-#%{_applnkdir}/Network/WWW/*
 %{_libdir}/%{name}
-%{_libdir}/bonobo/servers/*
+%{_serverdir}/*
 %{_datadir}/galeon
 %{_datadir}/applications/*
 %{_datadir}/gnome/help/*
