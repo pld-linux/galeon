@@ -8,6 +8,7 @@ License:	GPL
 Group:		X11/Applications/Networking
 Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/galeon/%{name}-%{version}.tar.gz
+Patch0:		galeon-DESTDIR.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla
 Requires:	gnome-libs >= 1.0.0
@@ -24,8 +25,11 @@ Gnome browser based on Gecko (Mozilla rendering engine).
 
 %prep
 %setup -q -n %{name}-%{ver}
+%patch -p1
 
 %build
+gettextize -c -f
+automake
 LDFLAGS="-s"; export LDFLAGS
 %configure \
 	--with-gnome \
