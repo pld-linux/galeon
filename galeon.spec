@@ -86,7 +86,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Networkdir=%{_applnkdir}/Network/WWW \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	omf_dest_dir=%{_omf_dest_dir}/omf/%{name}
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
 
@@ -120,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome/help/galeon-manual
 %{_datadir}/gnome/ui/*.xml
 %{_datadir}/oaf/*
-%{_omf_dest_dir}/*
+%{_omf_dest_dir}/omf/*
 %{_datadir}/sounds/galeon
 %{_pixmapsdir}/*
 %{_sysconfdir}/gconf/schemas/*
