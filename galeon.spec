@@ -6,7 +6,7 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.2.5
+Version:	1.2.6
 Release:	1
 Epoch:		2
 License:	GPL
@@ -75,6 +75,7 @@ aclocal -I %{_aclocaldir}/gnome
 	--disable-included-gettext \
 	--disable-install-schemas \
 	--disable-werror \
+	--with-mozilla-snapshot=1.0 \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=no
 
