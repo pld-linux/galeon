@@ -11,6 +11,7 @@ Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-macros.patch
 Patch2:		%{name}-gettext.patch
+Patch3:         %{name}-QnD.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla >= 0.9.2-2
 BuildRequires:	GConf-devel
@@ -45,6 +46,7 @@ interpretacji stron Mozilli).
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 rm missing
