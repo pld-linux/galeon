@@ -9,7 +9,9 @@ License:	GPL
 Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
-Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
+# This HTTP URL does not support continuation
+# Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.sourceforge.net/pub/sourceforge/galeon/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mozilla_five_home.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf-devel >= 1.0.4-1
