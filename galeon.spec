@@ -1,7 +1,7 @@
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW
 Name:		galeon
-Version:	0.8.4
+Version:	0.10
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
@@ -18,6 +18,9 @@ BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	mozilla-devel
+BuildRequires:  gnome-vfs-devel >= 0.5
+BuildRequires:  GConf-devel
+BuildRequires:  oaf >= 0.6.2
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
