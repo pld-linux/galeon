@@ -65,4 +65,4 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_applnkdir}/Network/WWW/*
 %{_datadir}/galeon
-%{_datadir}/pixmaps/*
+%{_pixmapsdir}/*
