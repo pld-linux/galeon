@@ -28,11 +28,11 @@ BuildRequires:	automake
 BuildRequires:	GConf2-devel >= 2.0.0
 BuildRequires:	ORBit2-devel >= 2.0.0
 BuildRequires:	bison
-BuildRequires:	bonobo-activation-devel >= 2.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-vfs2-devel >= 2.0.0
 BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	intltool
+BuildRequires:	libbonobo-devel >= 2.3.1-4
 BuildRequires:	libbonoboui-devel >= 2.1.1
 BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomeui-devel >= 2.0.5
@@ -42,8 +42,8 @@ BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	scrollkeeper >= 0.1.4
-BuildRequires:	bonobo-activation >= 2.2.0
 BuildRequires:	rpm-build >= 4.1-10
+Requires:	libbonobo >= 2.3.1-4
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 Requires(post):	GConf2
 Requires(post):	mozilla
