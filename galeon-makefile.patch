@@ -1,0 +1,28 @@
+--- /Makefile.am	Wed Sep 27 22:28:33 2000
++++ /Makefile.am	Sat Oct 14 16:37:45 2000
+@@ -15,7 +15,7 @@
+ gnorbadir = $(sysconfdir)/CORBA/servers
+ 
+ Network_DATA = galeon.desktop
+-Networkdir = $(datadir)/gnome/apps/Internet
++Networkdir = $(datadir)/applnk/Network/WWW
+ 
+ MyPortalCSS_DATA = myportal.css
+ MyPortalCSSdir = $(pkgdatadir)
+--- /galeon.desktop	Sun Oct  1 19:35:47 2000
++++ /galeon.desktop	Sat Oct 14 16:31:18 2000
+@@ -1,5 +1,6 @@
+ [Desktop Entry]
+ Name=Galeon
++Name[pl]=Galeon
+ Name[de]=Galeon
+ Name[es]=Galeon
+ Name[no]=Galeon
+@@ -8,6 +9,7 @@
+ Name[uk]=Galeon
+ Name[fr]=Galeon
+ Comment=Galeon Webbrowser
++Comment[pl]=Galeon - przegl±darka WWW
+ Comment[de]=Galeon Web-Browser
+ Comment[es]=Navegador Web Galeon
+ Comment[no]=Galeon nettleser
