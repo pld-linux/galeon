@@ -18,7 +18,7 @@ Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
+Source0:	http://dl.sf.net/galeon/%{name}-%{version}.tar.bz2
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
