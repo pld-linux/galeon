@@ -1,7 +1,8 @@
 #
 # Conditional build:
-%bcond_with gcc2	# compile using gcc2 to get working java plugin.
-			# Flash plugin seems to still doesn't work, use
+%bcond_with gcc2	# compile using gcc2 to get working gcc2-compiled java
+			# plugin (better get gcc3-compiled one).
+			# Flash plugin seems to still not work, use
 			# mozilla instead. To compile wit this option, You
 			# have to install mozilla compiled with gcc2.
 #
@@ -44,8 +45,8 @@ BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	mozilla-devel >= %{minmozver}
 BuildRequires:	nautilus-devel >= 2.4.0
 BuildRequires:	openssl-devel >= 0.9.7c
-BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
 Requires(post):	mozilla
 Requires(post):	scrollkeeper
