@@ -66,8 +66,8 @@ rm -f missing
 xml-i18n-toolize --copy --force
 gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
