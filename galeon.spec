@@ -6,7 +6,7 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Name:		galeon
 Version:	1.2.1
-Release:	3
+Release:	4
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -31,8 +31,10 @@ BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	oaf-devel >= 0.6.2
 BuildRequires:	openssl-devel
+BuildRequires:	scrollkeeper
 Requires:	GConf >= 1.0.4-1
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
+Prereq:         scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # can be provided by mozilla or mozilla-embedded
@@ -41,6 +43,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME
+%define         _omf_dest_dir   %(scrollkeeper-config --omfdir)
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -82,7 +85,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Networkdir=%{_applnkdir}/Network/WWW
+	Networkdir=%{_applnkdir}/Network/WWW \
+	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
 
@@ -94,11 +98,14 @@ gzip -9nf AUTHORS ChangeLog NEWS README
 %find_lang %{name} --with-gnome
 
 %post
+/usr/bin/scrollkeeper-update
 umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 gconftool --shutdown
 GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
+
+%postun -p /usr/bin/scrollkeeper-update
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -113,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/gnome/help/galeon-manual
 %{_datadir}/gnome/ui/*.xml
 %{_datadir}/oaf/*
-%{_datadir}/omf/*
+%{_omf_dest_dir}/*
 %{_datadir}/sounds/galeon
 %{_pixmapsdir}/*
 %{_sysconfdir}/gconf/schemas/*
