@@ -38,7 +38,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	nautilus-devel >= 2.0.0
-BuildRequires:	openssl-devel
+BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	scrollkeeper
 BuildRequires:	bonobo-activation >= 2.1.0-3
 BuildRequires:	rpm-build >= 4.1-10
