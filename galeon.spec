@@ -8,7 +8,7 @@ Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3
-Release:	0.%{snap}.0
+Release:	0.%{snap}.1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -50,7 +50,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
-%define		_bonobo_server_dir	/usr/lib/bonobo/servers
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -98,8 +97,7 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Networkdir=%{_applnkdir}/Network/WWW \
-	omf_dest_dir=%{_omf_dest_dir}/%{name} \
-	serverdir=%{_bonobo_server_dir}
+	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
@@ -122,7 +120,7 @@ MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 %doc AUTHORS ChangeLog NEWS README*
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/%{name}
-%{_bonobo_server_dir}/*
+%{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
 %{_datadir}/applications/*
 %{_datadir}/gnome/help/*
