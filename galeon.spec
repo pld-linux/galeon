@@ -29,7 +29,7 @@ BuildRequires:	libgnomeui-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
-#BuildRequires:	nautilus-devel >= 2.0.0
+BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel
 BuildRequires:	scrollkeeper
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
@@ -61,10 +61,12 @@ O galeon é um browser para o gnome baseado no mozilla.
 %build
 rm -f missing
 glib-gettextize --copy --force
-xml-i18n-toolize --copy --force
+#xml-i18n-toolize --copy --force
+intltoolize --copy --force
 libtoolize --copy --force
-aclocal -I %{_aclocaldir}/gnome2-macros
-autoheader
+#aclocal -I %{_aclocaldir}/gnome2-macros
+%{__aclocal}
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 #%if %{_gcc_ver} > 2
@@ -96,21 +98,21 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
-%find_lang %{name} --with-gnome
+%find_lang galeon-2.0
 
 %post
 /usr/bin/scrollkeeper-update
 umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
-GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas >/dev/null
+GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/GNOME2/gconf/schemas/galeon.schemas >/dev/null
 
 %postun -p /usr/bin/scrollkeeper-update
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files -f galeon-2.0.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
@@ -119,7 +121,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
 %{_datadir}/applications/*
-%{_datadir}/gnome/help/galeon-manual
+%{_datadir}/gnome/help/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_omf_dest_dir}/%{name}
 %{_datadir}/sounds/galeon
