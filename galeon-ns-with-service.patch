@@ -1,0 +1,24 @@
+diff -Nur galeon-0.11.3.orig/src/GaleonWrapper.cpp galeon-0.11.3/src/GaleonWrapper.cpp
+--- galeon-0.11.3.orig/src/GaleonWrapper.cpp	Wed Jul 25 00:43:50 2001
++++ galeon-0.11.3/src/GaleonWrapper.cpp	Sat Aug  4 05:39:19 2001
+@@ -124,7 +124,7 @@
+ 						     GHFactory,
+ 						     PR_TRUE);
+ 
+-	NS_WITH_SERVICE(nsIGlobalHistory, inst, NS_GLOBALHISTORY_CONTRACTID, &result);
++	nsCOMPtr<nsIGlobalHistory> inst = do_GetService(NS_GLOBALHISTORY_CONTRACTID, &result);
+  	dsHistory->SetGlobalHistory(inst);
+ 
+ 	nsCOMPtr<nsPIDOMWindow> piWin;
+diff -Nur galeon-0.11.3.orig/src/mozilla.cpp galeon-0.11.3/src/mozilla.cpp
+--- galeon-0.11.3.orig/src/mozilla.cpp	Sat Jul 21 21:38:14 2001
++++ galeon-0.11.3/src/mozilla.cpp	Sat Aug  4 05:39:10 2001
+@@ -279,7 +279,7 @@
+ 	nsresult result;
+ 	GaleonWrapper *wrapper = (GaleonWrapper *)(embed->wrapper);
+ 
+-	NS_WITH_SERVICE(nsIPrintOptions, options, kPrintOptionsCID, &result);
++	nsCOMPtr<nsIPrintOptions> options = do_GetService(kPrintOptionsCID, &result);
+ 	if (NS_FAILED(result)) return NS_ERROR_FAILURE;
+ 
+ 	if (info->pages)
