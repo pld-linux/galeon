@@ -1,0 +1,9 @@
+diff -Nuard galeon-1.2.6.orig/doc/C/galeon-manual-C.omf galeon-1.2.6/doc/C/galeon-manual-C.omf
+--- galeon-1.2.6.orig/doc/C/galeon-manual-C.omf	Wed Aug 28 17:27:10 2002
++++ galeon-1.2.6/doc/C/galeon-manual-C.omf	Thu Oct  3 19:15:33 2002
+@@ -1,4 +1,5 @@
+ <?xml version="1.0" standalone="no"?>
++<!DOCTYPE omf PUBLIC "-//OMF//DTD Scrollkeeper OMF Variant V1.0//EN" "http://scrollkeeper.sourceforge.net/dtds/scrollkeeper-omf-1.0/scrollkeeper-omf.dtd">
+ <omf>
+   <resource>
+     <creator>
