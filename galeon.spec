@@ -1,6 +1,6 @@
 
-%define		minmozver	1.0rc3
-%define		snap		20020529
+%define		minmozver	1.1
+%define		snap		20020929
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -13,7 +13,7 @@ Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 #Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}.%{snap}.tar.gz
+Source0:	%{name}-%{version}.%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel
@@ -22,14 +22,14 @@ BuildRequires:	bison
 BuildRequires:	bonobo-activation-devel
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-vfs2-devel
-BuildRequires:	gtk+2-devel >= 2.0.3
+BuildRequires:	gtk+2-devel >= 2.0.6
 BuildRequires:	intltool
 BuildRequires:	libglade2-devel
 BuildRequires:	libgnomeui-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
-BuildRequires:	nautilus-devel >= 1.1.17
+#BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel
 BuildRequires:	scrollkeeper
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
@@ -65,9 +65,9 @@ gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
-%if %{_gcc_ver} > 2
-CXXFLAGS="-Wno-deprecated"; export CXXFLAGS
-%endif
+#%if %{_gcc_ver} > 2
+#CXXFLAGS="-Wno-deprecated"; export CXXFLAGS
+#%endif
 %configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
