@@ -12,7 +12,7 @@ Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-macros.patch
 Patch2:		%{name}-gettext.patch
 URL:		http://galeon.sourceforge.net/
-Requires:	mozilla >= 0.9.1
+Requires:	mozilla >= 0.9.2-2
 BuildRequires:	GConf-devel
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
