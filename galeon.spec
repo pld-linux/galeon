@@ -8,6 +8,7 @@ Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	ftp://download.sourceforge.net/pub/sourceforge/galeon/%{name}-%{version}.tar.gz
+Patch0:		%{name}-mozilla_five_home.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla
 BuildRequires:	GConf-devel
@@ -34,6 +35,7 @@ interpretacji stron Mozilli).
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 gettextize --copy --force
@@ -54,6 +56,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	Networkdir=%{_applnkdir}/Network/WWW
+
+mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
 
 gzip -9nf AUTHORS ChangeLog NEWS README
 
