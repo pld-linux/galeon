@@ -127,7 +127,7 @@ MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 %{_libdir}/%{name}
 %{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
-%{_datadir}/applications/*
+%{_desktopdir}/*
 %{_datadir}/gnome/help/*
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_omf_dest_dir}/%{name}
