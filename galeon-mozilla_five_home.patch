@@ -1,7 +1,7 @@
-diff -urN galeon-0.11.0.org/src/main.c galeon-0.11.0/src/main.c
---- galeon-0.11.0.org/src/main.c	Sat Jun 30 23:36:45 2001
-+++ galeon-0.11.0/src/main.c	Sat Jun 30 23:38:06 2001
-@@ -41,6 +41,7 @@
+diff -urN galeon-0.12pre1/src/main.c new/galeon-0.12pre1/src/main.c
+--- galeon-0.12pre1/src/main.c	Sun Aug  5 17:57:58 2001
++++ galeon-0.12pre1/src/main.c	Tue Aug  7 15:49:44 2001
+@@ -44,6 +44,7 @@
  #include <applet-widget.h>
  #endif
  
@@ -9,14 +9,14 @@ diff -urN galeon-0.11.0.org/src/main.c galeon-0.11.0/src/main.c
  #include <errno.h>
  
  /* local function prototypes */
-@@ -132,6 +133,10 @@
+@@ -144,6 +145,10 @@
  	gint i, n_urls;
  	gchar **url;
  
-+        /* Setting MOZILLA_FIVE_HOME */
++	/* Setting MOZILLA_FIVE_HOME */
 +	if (getenv("MOZILLA_FIVE_HOME") == NULL)
 +	    setenv("MOZILLA_FIVE_HOME", "/usr/X11R6/lib/mozilla/", 1);
-+	
++	    
  	 /* make stdout line buffered - we only use it for debug info */
  	setvbuf (stdout, NULL, _IOLBF, 0);
  
