@@ -85,7 +85,7 @@ intltoolize --copy --force
 	--disable-included-gettext \
 	--disable-schemas-install \
 	--disable-werror \
-	--with-mozilla-snapshot=1.3 \
+	--with-mozilla-snapshot=1.3b \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=yes
 
