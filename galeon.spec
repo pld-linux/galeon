@@ -25,8 +25,8 @@ BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-devel >= 0.9.9
-BuildRequires:	oaf >= 0.6.2
 BuildRequires:	oaf-devel >= 0.6.2
+BuildRequires:	openssl-devel
 Requires:	GConf >= 1.0.4-1
 %requires_eq	mozilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
