@@ -9,10 +9,10 @@ Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz     	
 Patch0:		%{name}-mozilla_five_home.patch
-#Patch1:		%{name}-ns-with-service.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla-embedded >= 0.9.3-1
-BuildRequires:	GConf-devel >= 1.0.3-2
+Requires:	GConf >= 1.0.3-3
+BuildRequires:	GConf-devel >= 1.0.3-3
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
 BuildRequires:  gnome-core-devel >= 1.2.0
@@ -21,7 +21,7 @@ BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	mozilla-devel >= 0.9.3-1
+#BuildRequires:	mozilla-devel >= 0.9.3-1
 BuildRequires:	oaf >= 0.6.2
 BuildRequires:  oaf-devel >= 0.6.2
 BuildRequires:  gdk-pixbuf-devel >= 0.10.
@@ -42,7 +42,6 @@ interpretacji stron Mozilli).
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
 
 %build
 %configure2_13 \
