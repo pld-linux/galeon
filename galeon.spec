@@ -7,7 +7,7 @@
 			# mozilla instead. To compile wit this option, You
 			# have to install mozilla compiled with gcc2.
 #
-%define		minmozver	5:1.6
+%define		minmozver	5:1.7
 %define		snap	20040117
 
 Summary:	Galeon - gecko-based GNOME web browser
@@ -16,7 +16,7 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.15
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -27,6 +27,8 @@ Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-locale-names.patch
+Patch3:		%{name}-mozilla17.patch
+Patch4:		%{name}-gcc34.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -50,8 +52,8 @@ BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
-Requires:	glib2 >= 1:2.4.0
-Requires:	gtk+2 >= 2:2.4.0
+Requires:	glib2 >= 1:2.4.2
+Requires:	gtk+2 >= 2:2.4.3
 Requires:	libbonobo >= 2.4.0
 Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -79,6 +81,8 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 mv po/{no,nb}.po
 
