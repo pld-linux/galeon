@@ -1,0 +1,2 @@
+- Added BuilRequires GConf-devel >= 1.0.3-2
+- NFY, still needs moz_five_home.patch and more gconf setup :(
