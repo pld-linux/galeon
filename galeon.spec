@@ -12,7 +12,7 @@ Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 #Patch1:		%{name}-ns-with-service.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla-embedded >= 0.9.3-1
-BuildRequires:	GConf-devel
+BuildRequires:	GConf-devel >= 1.0.3-2
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
 BuildRequires:  gnome-core-devel >= 1.2.0
@@ -51,7 +51,7 @@ interpretacji stron Mozilli).
 	--with-mozilla-home=%{_libdir}/mozilla \
 	--enable-nls \
 	--disable-included-gettext \
-	--sysconfdir=%{_sysconfdir}
+	--sysconfdir=%{_sysconfdir}/X11/GNOME
 
 %{__make}
 
