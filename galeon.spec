@@ -15,6 +15,7 @@ Requires:	gnome-libs >= 1.0.0
 Requires:	ORBit >= 0.4.0
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-devel
+BuildRequires:  libglade-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 
@@ -25,7 +26,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Gnome browser based on Gecko (Mozilla rendering engine).
 
 %description -l pl
-Galeon jest przegl±dark± WWW bazuj±c± na Gecko (mechani¼mie interpretacji stron Mozilli)
+Galeon jest przegl±dark± WWW bazuj±c± na Gecko (mechanizmie interpretacji stron Mozilli)
 
 %prep
 %setup -q
