@@ -5,8 +5,8 @@
 #			  mozilla instead. To compile wit this option, You 
 #			  have to install mozilla compiled with gcc2.
 #
-%define		minmozver	1.3a
-%define		snap		20030205
+%define		minmozver	1.3b-0.2
+%define		snap		20030213
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -73,7 +73,7 @@ O galeon é um browser para o gnome baseado no mozilla.
 rm -f missing
 glib-gettextize --copy --force
 intltoolize --copy --force
-libtoolize --copy --force
+%{__libtoolize}
 %{__aclocal}
 %{__autoheader}
 %{__autoconf}
