@@ -13,6 +13,7 @@ Source0:	http://download.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 URL:		http://galeon.sourceforge.net
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Autoreq:	0
+Requires:	mozilla
 Requires:	gnome-libs >= 1.0.0
 Requires:	ORBit >= 0.4.0
 BuildRequires:	libxml-devel >= 1.8.7
