@@ -190,20 +190,6 @@ diff -Nru galeon-1.3.10.orig/src/galeon-shell.c galeon-1.3.10/src/galeon-shell.c
  				       GALEON_DIR "/bookmarks.xbel", NULL);
  	
  	/* init the bookmark icon provider */
-diff -Nru galeon-1.3.10.orig/src/galeon-spinner.c galeon-1.3.10/src/galeon-spinner.c
---- galeon-1.3.10.orig/src/galeon-spinner.c	2003-09-09 01:26:56.000000000 +0200
-+++ galeon-1.3.10/src/galeon-spinner.c	2003-11-13 12:26:57.000000000 +0100
-@@ -827,8 +827,9 @@
- galeon_spinner_init_directory_list (void)
- {
- 	gchar *path;
-+	gchar *home_etc = getenv("HOME_ETC");
- 	
--	path = g_build_filename (g_get_home_dir (), GALEON_DIR, "spinners", NULL);
-+	path = g_build_filename (home_etc ? home_etc : g_get_home_dir (), GALEON_DIR, "spinners", NULL);
- 	spinner_directories = g_list_append (spinner_directories, path);
- 
- 	path = g_build_filename (SHARE_DIR, "spinners", NULL);
 diff -Nru galeon-1.3.10.orig/src/session.c galeon-1.3.10/src/session.c
 --- galeon-1.3.10.orig/src/session.c	2003-10-22 17:25:06.000000000 +0200
 +++ galeon-1.3.10/src/session.c	2003-11-13 12:26:57.000000000 +0100
