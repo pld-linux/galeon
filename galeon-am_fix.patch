@@ -1,6 +1,19 @@
---- galeon-1.2.0/src/mozilla/Makefile.am.wiget	Mon Apr 15 18:02:59 2002
-+++ galeon-1.2.0/src/mozilla/Makefile.am	Mon Apr 15 18:04:07 2002
-@@ -94,9 +94,9 @@
+diff -urN galeon-1.2.1.org/src/Makefile.am galeon-1.2.1/src/Makefile.am
+--- galeon-1.2.1.org/src/Makefile.am	Sat Apr 20 20:17:58 2002
++++ galeon-1.2.1/src/Makefile.am	Sat Apr 20 20:18:20 2002
+@@ -160,7 +160,7 @@
+ 	$(NAUTILUS_VIEW_SRC_TO_COMPILE)
+ 
+ galeon_bin_LDADD = \
+-	$(top_builddir)/src/mozilla/libmozilla-interaction.a \
++	$(top_builddir)/src/mozilla/libmozilla-interaction.la \
+ 	$(MOZILLA_COMPONENT_LDFLAGS) \
+ 	$(MOZILLA_COMPONENT_LIBS) \
+ 	$(GALEON_DEPENDENCY_LIBS) \
+diff -urN galeon-1.2.1.org/src/mozilla/Makefile.am galeon-1.2.1/src/mozilla/Makefile.am
+--- galeon-1.2.1.org/src/mozilla/Makefile.am	Sat Apr 20 20:17:58 2002
++++ galeon-1.2.1/src/mozilla/Makefile.am	Sat Apr 20 20:18:43 2002
+@@ -100,9 +100,9 @@
  	gProtocolModule.cpp
  
  
@@ -12,14 +25,3 @@
  	mozilla.cpp			\
  	mozilla.h			\
  	BaseProtocolHandler.cpp		\
---- galeon-1.2.0/src/Makefile.am.wiget	Mon Apr 15 18:28:13 2002
-+++ galeon-1.2.0/src/Makefile.am	Mon Apr 15 18:28:38 2002
-@@ -160,7 +160,7 @@
- 	$(NAUTILUS_VIEW_SRC_TO_COMPILE)
- 
- galeon_bin_LDADD = \
--	$(top_builddir)/src/mozilla/libmozilla-interaction.a \
-+	$(top_builddir)/src/mozilla/libmozilla-interaction.la \
- 	$(MOZILLA_COMPONENT_LDFLAGS) \
- 	$(MOZILLA_COMPONENT_LIBS) \
- 	$(GALEON_DEPENDENCY_LIBS) \
