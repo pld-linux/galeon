@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without nautilus	# disable nautilus view
 %bcond_with gcc2	# compile using gcc2 to get working gcc2-compiled java
 			# plugin (better get gcc3-compiled one).
 			# Flash plugin seems to still not work, use
@@ -43,7 +44,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	mozilla-devel >= %{minmozver}
-BuildRequires:	nautilus-devel >= 2.4.0
+%{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	rpm-build >= 4.1-10
 BuildRequires:	scrollkeeper >= 0.1.4
@@ -100,7 +101,12 @@ intltoolize --copy --force
 	--disable-schemas-install \
 	--disable-werror \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
+	%if %{with nautilus}
 	--enable-nautilus-view=yes
+	%else
+	--enable-nautilus-view=no
+	%endif
+	
 
 %{__make}
 
