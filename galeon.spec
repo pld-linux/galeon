@@ -1,36 +1,36 @@
-# Note that this is NOT a relocatable package
 %define ver      0.4
 %define rel      1
 %define prefix   /usr
+Summary:	Galeon
+Name:		galeon
+Version:	%ver
+Release:	%rel
+License:	GPL
+Group:		X11/Applications/Networking
+Group(pl):	X11/Aplikacje/Sieciowe
+Source0:	%{name}-%{version}.tar.gz
+URL:		http://galeon.sourceforge.net
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Autoreq:	0
+Requires:	gnome-libs >= 1.0.0
+Requires:	ORBit >= 0.4.0
 
-Summary:   Galeon
-Name:      galeon
-Version:   %ver
-Release:   %rel
-Copyright: GPL
-Group:     Applications/Internet
-Source:    galeon-%{PACKAGE_VERSION}.tar.gz
-URL:       http://galeon.sourceforge.net
-BuildRoot: /tmp/galeon-%{PACKAGE_VERSION}-root
-Packager:  Marco Pesenti Gritti <mpeseng@tin.it>
-Autoreq: 0
-Requires: gnome-libs >= 1.0.0
-Requires: ORBit >= 0.4.0
 
-Docdir: %{prefix}/doc
+%define		_prefix		/usr/X11R6
+%define		_mandir		%{_prefix}/man
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine)
 %prep
-%setup
+%setup -q
 
 %build
 if [ ! -f configure ]; then
-  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{prefix} \
-    --with-gnome --without-debug --sysconfdir=/etc
+  CFLAGS="$RPM_OPT_FLAGS" ./autogen.sh --prefix=%{_prefix} \
+	--with-gnome --without-debug --sysconfdir=%{_sysconfdir}
 else
-  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{prefix} \
-    --with-gnome --without-debug --sysconfdir=/etc
+  CFLAGS="$RPM_OPT_FLAGS" ./configure --prefix=%{_prefix} \
+	--with-gnome --without-debug --sysconfdir=%{_sysconfdir}
 fi
 
 if [ "$SMP" != "" ]; then
@@ -43,14 +43,14 @@ fi
 %install
 rm -rf $RPM_BUILD_ROOT
 
-make prefix=$RPM_BUILD_ROOT%{prefix} sysconfdir=$RPM_BUILD_ROOT/etc install
+%{__make} prefix=$RPM_BUILD_ROOT%{_prefix} sysconfdir=$RPM_BUILD_ROOT%{_sysconfdir} install
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
-%defattr(-, root, root)
+%defattr(644,root,root,755)
 
 %doc AUTHORS COPYING ChangeLog NEWS README
-%{prefix}/bin/*
-%{prefix}/share/*
+%attr(755,root,root) %{_bindir}/*
+%{_datadir}/*
