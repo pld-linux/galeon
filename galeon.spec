@@ -1,6 +1,12 @@
-
+#
+# Conditional build:
+# _with_gcc2		- compile using gcc2 to get working java plugin.
+#			  Flash plugin seems to still doesn't work, use 
+#			  mozilla instead. To compile wit this option, You 
+#			  have to install mozilla compiled with gcc2.
+#
 %define		minmozver	1.2.1
-%define		snap		20021209
+%define		snap		20021221
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -35,7 +41,7 @@ BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel
 BuildRequires:	scrollkeeper
 BuildRequires:	bonobo-activation >= 2.1.0-3
-BuildRequires:	rpm-build >= 4.1-8.2
+BuildRequires:	rpm-build >= 4.1-10
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 Requires(post):	GConf2
 Requires(post):	mozilla
@@ -44,6 +50,11 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # can be provided by mozilla or mozilla-embedded
 %define		_noautoreqdep	libgtkembedmoz.so libgtksuperwin.so libxpcom.so
+
+%if%{?_with_gcc2:1}%{!?_with_gcc2:0}
+%define         __cc            gcc2
+%define         __cxx           gcc2
+%endif
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -86,9 +97,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	Networkdir=%{_applnkdir}/Network/WWW \
-	omf_dest_dir=%{_omf_dest_dir}/%{name}
+	DESTDIR=$RPM_BUILD_ROOT 
+#	Networkdir=%{_applnkdir}/Network/WWW \
+#	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
