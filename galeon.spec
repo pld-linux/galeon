@@ -1,15 +1,16 @@
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Name:		galeon
-Version:	0.10.6
+Version:	0.11.0
 Release:	1
 License:	GPL
 Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
-Source0:	ftp://download.sourceforge.net/pub/sourceforge/galeon/%{name}-%{version}.tar.gz
+Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz     	
 Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-macros.patch
+Patch2:		%{name}-gettext.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla >= 0.9.1
 BuildRequires:	GConf-devel
@@ -20,7 +21,7 @@ BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	libglade-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	mozilla-devel >= 0.9.1
+BuildRequires:	mozilla-devel >= 0.9.2
 BuildRequires:	oaf >= 0.6.2
 BuildRequires:	bison
 BuildRequires:	automake
@@ -42,6 +43,7 @@ interpretacji stron Mozilli).
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 rm missing
@@ -53,6 +55,7 @@ automake -a -c
 %configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
+	--with-mozilla-home=%{_libdir}/mozilla \
 	--enable-nls \
 	--disable-included-gettext
 
