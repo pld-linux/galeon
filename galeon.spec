@@ -2,8 +2,8 @@ Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Name:		galeon
-Version:	1.0.3
-Release:	4
+Version:	1.1.3
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -108,6 +108,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}
 %{_datadir}/galeon
 %{_datadir}/gnome/help/galeon-manual
+%{_datadir}/gnome/ui/*
 %{_datadir}/oaf/*
 %{_datadir}/omf/*
 %{_datadir}/sounds/galeon
