@@ -1,6 +1,6 @@
 
-%define		minmozver	1.1
-%define		snap		20021019
+%define		minmozver	1.2
+%define		snap		20021020
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -80,7 +80,7 @@ libtoolize --copy --force
 	--disable-included-gettext \
 	--disable-install-schemas \
 	--disable-werror \
-	--with-mozilla-snapshot=1.0 \
+	--with-mozilla-snapshot=trunk \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=yes
 
