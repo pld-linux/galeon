@@ -12,8 +12,6 @@ Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mozilla_five_home.patch
 URL:		http://galeon.sourceforge.net/
-Requires:	GConf >= 1.0.4-1
-%requires_eq:	mozilla
 BuildRequires:	GConf-devel >= 1.0.4-1
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	gettext-devel
@@ -29,6 +27,8 @@ BuildRequires:	oaf-devel >= 0.6.2
 BuildRequires:	gdk-pixbuf-devel >= 0.10.
 BuildRequires:	bison
 BuildRequires:	xml-i18n-tools
+Requires:	GConf >= 1.0.4-1
+%requires_eq	mozilla
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -64,8 +64,6 @@ O galeon é um browser para o gnome baseado no mozilla.
 	--disable-included-gettext \
 	--disable-install-schemas \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas
-
-
 
 %{__make}
 
