@@ -8,7 +8,7 @@ Group:		X11/Applications/Networking
 Group(de):	X11/Applikationen/Netzwerkwesen
 Group(pl):	X11/Aplikacje/Sieciowe
 Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz     	
-#Patch0:		%{name}-mozilla_five_home.patch
+Patch0:		%{name}-mozilla_five_home.patch
 #Patch1:		%{name}-ns-with-service.patch
 URL:		http://galeon.sourceforge.net/
 Requires:	mozilla-embedded >= 0.9.3-1
@@ -41,7 +41,7 @@ interpretacji stron Mozilli).
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch0 -p1
 #%patch1 -p1
 
 %build
@@ -51,7 +51,11 @@ interpretacji stron Mozilli).
 	--with-mozilla-home=%{_libdir}/mozilla \
 	--enable-nls \
 	--disable-included-gettext \
-	--sysconfdir=%{_sysconfdir}/X11/GNOME
+	--sysconfdir=%{_sysconfdir}/X11/GNOME \
+	--disable-install-schemas \
+	--enable-gconf-source=%{_sysconfdir}/X11/GNOME/gconf/schemas
+
+
 
 %{__make}
 
@@ -60,7 +64,8 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	Networkdir=%{_applnkdir}/Network/WWW
+	Networkdir=%{_applnkdir}/Network/WWW \
+	sysconfdir=%{_sysconfdir}/X11/GNOME 
 
 mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
 
@@ -72,6 +77,8 @@ gzip -9nf AUTHORS ChangeLog NEWS README
 umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
+gconftool --shutdown
+GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/X11/GNOME/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/X11/GNOME/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -85,3 +92,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/oaf/*
 %{_datadir}/sounds/galeon
 %{_pixmapsdir}/*
+%{_sysconfdir}/*
