@@ -1,5 +1,5 @@
 
-%define		minmozver	1.0
+%define		minmozver	1.1
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -7,7 +7,7 @@ Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.2.6
-Release:	4
+Release:	5
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -73,6 +73,7 @@ rm -f missing
 xml-i18n-toolize --copy --force
 %{__gettextize}
 %{__aclocal} -I %{_aclocaldir}/gnome
+%{__autoheader}
 %{__autoconf}
 %{__automake}
 %configure \
@@ -83,7 +84,7 @@ xml-i18n-toolize --copy --force
 	--disable-included-gettext \
 	--disable-install-schemas \
 	--disable-werror \
-	--with-mozilla-snapshot=1.0 \
+	--with-mozilla-snapshot=trunk \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
 	--enable-nautilus-view=no
 
@@ -110,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %post
 /usr/bin/scrollkeeper-update
 umask 022
-rm -f %{_libdir}/mozilla/component.reg
+rm -f %{_libdir}/mozilla/components/{compreg,xpti}.dat
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 gconftool --shutdown
 GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
