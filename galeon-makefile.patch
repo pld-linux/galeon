@@ -1,28 +1,29 @@
---- /Makefile.am	Wed Sep 27 22:28:33 2000
-+++ /Makefile.am	Sat Oct 14 16:37:45 2000
-@@ -15,7 +15,7 @@
+--- galeon-0.10/Makefile.am	Wed Feb  7 13:26:16 2001
++++ galeon-0.10/Makefile.am	Sat Feb 24 00:12:00 2001
+@@ -9,7 +9,7 @@
+ gnorba_DATA = galeon.gnorba
  gnorbadir = $(sysconfdir)/CORBA/servers
  
- Network_DATA = galeon.desktop
 -Networkdir = $(datadir)/gnome/apps/Internet
 +Networkdir = $(datadir)/applnk/Network/WWW
+ Network_DATA = $(DESKTOP_FILES)
  
  MyPortalCSS_DATA = myportal.css
- MyPortalCSSdir = $(pkgdatadir)
---- /galeon.desktop	Sun Oct  1 19:35:47 2000
-+++ /galeon.desktop	Sat Oct 14 16:31:18 2000
-@@ -1,5 +1,6 @@
- [Desktop Entry]
- Name=Galeon
-+Name[pl]=Galeon
- Name[de]=Galeon
- Name[es]=Galeon
+--- galeon-0.10/galeon.desktop	Sat Feb 17 18:59:17 2001
++++ galeon-0.10/galeon.desktop	Sat Feb 24 00:10:47 2001
+@@ -16,6 +16,7 @@
+ Name[lt]=Galeon
+ Name[nl]=Galeon
  Name[no]=Galeon
-@@ -8,6 +9,7 @@
- Name[uk]=Galeon
- Name[fr]=Galeon
++Name[pl]=Galeon
+ Name[pt_BR]=Galeon
+ Name[ro]=Galeon
+ Name[sk]=Galeon
+@@ -25,6 +26,7 @@
  Comment=Galeon Webbrowser
-+Comment[pl]=Galeon - przegl±darka WWW
- Comment[de]=Galeon Web-Browser
  Comment[es]=Navegador Web Galeon
- Comment[no]=Galeon nettleser
+ Comment[fr]=Navigateur Web Galeon
++Comment[pl]=Galeon - przegl±darka WWW
+ Comment[sv]=Webbläsaren Galeon
+ Comment[tr]=Galeon Webbrowser
+ Exec=galeon
