@@ -98,8 +98,6 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT 
-#	Networkdir=%{_applnkdir}/Network/WWW \
-#	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
