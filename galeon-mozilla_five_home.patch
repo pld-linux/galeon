@@ -1,0 +1,26 @@
+diff -Nur galeon-0.10.2/src/main.c galeon-0.10.2.new/src/main.c
+--- galeon-0.10.2/src/main.c	Fri Mar  9 21:15:41 2001
++++ galeon-0.10.2.new/src/main.c	Sat Mar 17 00:26:35 2001
+@@ -17,7 +17,7 @@
+  */
+ 
+ #include "galeon.h"
+-
++#include <stdlib.h>
+ 
+ /* local function prototypes */
+ 
+@@ -111,7 +111,12 @@
+ 	poptContext ctx;
+ 	char fullurl[PATH_MAX];
+ 	
+-
++	/*
++	 * Setting MOZILLA_FIVE_HOME
++	 */
++	if (getenv("MOZILLA_FIVE_HOME") == NULL)
++	    setenv("MOZILLA_FIVE_HOME", "/usr/X11R6/lib/mozilla/", 1);
++	    
+ 	 /* Make stdout line buffered - we only use it for debug info */
+ 	setvbuf (stdout, NULL, _IOLBF, 0);
+ 
