@@ -15,7 +15,7 @@ Summary(zh_CN):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	1.3.5
 #Release:	1.%{snap}.1
-Release:	2
+Release:	3
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
