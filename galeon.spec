@@ -16,7 +16,7 @@ Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-am_fix.patch
 Patch2:		%{name}-vfs.patch
 URL:		http://galeon.sourceforge.net/
-BuildRequires:	GConf-devel >= 1.0.4-1
+BuildRequires:	GConf-devel >= 1.0.9-2
 BuildRequires:	ORBit-devel >= 0.5.0
 BuildRequires:	bison
 BuildRequires:	gdk-pixbuf-devel >= 0.10.
