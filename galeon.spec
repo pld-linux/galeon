@@ -19,7 +19,7 @@ Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	%{name}-%{version}-%{snap}.tar.bz2
-# Source0-md5:	48cbd264e9efb3cb0e3322bf4603e8bc
+# Source0-md5:	2a162fc40d6be4aaaa73e1219c763831
 #Source0:	http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
