@@ -1,29 +1,21 @@
---- galeon-0.10/Makefile.am	Wed Feb  7 13:26:16 2001
-+++ galeon-0.10/Makefile.am	Sat Feb 24 00:12:00 2001
+--- galeon-0.10.1/Makefile.am	Sun Feb 18 23:08:02 2001
++++ galeon-0.10.1/Makefile.am	Mon Feb 26 19:42:27 2001
 @@ -9,7 +9,7 @@
- gnorba_DATA = galeon.gnorba
- gnorbadir = $(sysconfdir)/CORBA/servers
+ oaf_DATA = galeon.oafinfo
+ oafdir = $(datadir)/oaf
  
 -Networkdir = $(datadir)/gnome/apps/Internet
 +Networkdir = $(datadir)/applnk/Network/WWW
  Network_DATA = $(DESKTOP_FILES)
  
  MyPortalCSS_DATA = myportal.css
---- galeon-0.10/galeon.desktop	Sat Feb 17 18:59:17 2001
-+++ galeon-0.10/galeon.desktop	Sat Feb 24 00:10:47 2001
-@@ -16,6 +16,7 @@
+--- galeon-0.10.1/galeon.desktop	Sat Feb 24 06:25:28 2001
++++ galeon-0.10.1/galeon.desktop	Mon Feb 26 19:43:09 2001
+@@ -17,6 +17,7 @@
  Name[lt]=Galeon
  Name[nl]=Galeon
  Name[no]=Galeon
 +Name[pl]=Galeon
  Name[pt_BR]=Galeon
  Name[ro]=Galeon
- Name[sk]=Galeon
-@@ -25,6 +26,7 @@
- Comment=Galeon Webbrowser
- Comment[es]=Navegador Web Galeon
- Comment[fr]=Navigateur Web Galeon
-+Comment[pl]=Galeon - przegl±darka WWW
- Comment[sv]=Webbl‰saren Galeon
- Comment[tr]=Galeon Webbrowser
- Exec=galeon
+ Name[ru]=Á¡Ã≈œŒ
