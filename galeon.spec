@@ -42,7 +42,7 @@ BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	nautilus-devel >= 2.3.7-3
-BuildRequires:	openssl-devel >= 0.9.7
+BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post):	GConf2
