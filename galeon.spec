@@ -15,8 +15,6 @@ Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-am_fix.patch
-Patch2:		%{name}-vfs.patch
-Patch3:		%{name}-mozilla_ver.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf-devel >= 1.0.9-2
 BuildRequires:	ORBit-devel >= 0.5.0
@@ -61,8 +59,6 @@ O galeon é um browser para o gnome baseado no mozilla.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
 
 %build
 rm -f missing
