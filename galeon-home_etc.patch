@@ -47,30 +47,28 @@ diff -Nru galeon-1.3.10.orig/embed/global-history.c galeon-1.3.10/embed/global-h
          gchar *histfile;
  
  	/* build the filename */
--        confdir = g_build_filename (g_get_home_dir (), GALEON_DIR, NULL);
-+        confdir = g_build_filename (home_etc ? home_etc : g_get_home_dir (), GALEON_DIR, NULL);
- 	histfile = g_build_filename (confdir, "history.xml", NULL);
+-	histfile = g_build_filename (g_get_home_dir (), GALEON_DIR, 
++	histfile = g_build_filename (home_etc ? home_etc : g_get_home_dir (), GALEON_DIR, 
+ 				     "history.xml", NULL);
  	
  	/* build the initial history hash table */
-@@ -526,7 +527,8 @@
- static void 
+@@ -526,6 +527,7 @@
  history_save (GlobalHistoryPrivate *ghpriv)
  {
--        gchar *histfile;
-+	gchar *histfile;
+ 	gchar *histfile, *tmpfile;
 +	gchar *home_etc = getenv("HOME_ETC");
  	FILE *fp;
+ 	int ret;
  
- 	DEBUG_MSG (("saving history\n"));
 @@ -538,7 +540,7 @@
+ 		return;
+ 	}
  
- 	DEBUG_MSG (("really\n"));
- 
--	histfile = g_strconcat (g_get_home_dir (), 
-+	histfile = g_strconcat (home_etc ? home_etc : g_get_home_dir (), 
- 				"/"GALEON_DIR"/history.xml", NULL);
- 	fp = fopen (histfile, "wb");
- 	g_free (histfile);
+-	histfile = g_build_filename (g_get_home_dir (),
++	histfile = g_build_filename (home_etc ? home_etc : g_get_home_dir (),
+ 				     GALEON_DIR,
+ 				     "history.xml",
+ 				     NULL);
 diff -Nru galeon-1.3.10.orig/galeon-config-tool.in galeon-1.3.10/galeon-config-tool.in
 --- galeon-1.3.10.orig/galeon-config-tool.in	2002-03-14 08:40:24.000000000 +0100
 +++ galeon-1.3.10/galeon-config-tool.in	2003-11-13 12:26:57.000000000 +0100
