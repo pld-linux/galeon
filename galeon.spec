@@ -50,7 +50,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
 %define		_sysconfdir	/etc/X11/GNOME2
-%define		_serverdir	/usr/lib/bonobo/servers
+%define		_bonobo_server_dir	/usr/lib/bonobo/servers
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -99,7 +99,7 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 	DESTDIR=$RPM_BUILD_ROOT \
 	Networkdir=%{_applnkdir}/Network/WWW \
 	omf_dest_dir=%{_omf_dest_dir}/%{name} \
-	serverdir=%{_serverdir}
+	serverdir=%{_bonobo_server_dir}
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
@@ -122,7 +122,7 @@ MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
 %doc AUTHORS ChangeLog NEWS README*
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/%{name}
-%{_serverdir}/*
+%{_bonobo_server_dir}/*
 %{_datadir}/galeon
 %{_datadir}/applications/*
 %{_datadir}/gnome/help/*
