@@ -1,38 +1,37 @@
 
 %define		minmozver	1.0rc3
+%define		snap		20020529
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.2.3
-Release:	1
+Version:	1.2.99
+Release:	0.%{snap}
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
+#Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.%{snap}.tar.gz
 Source1:	%{name}-config-tool.1
-Patch0:		%{name}-mozilla_five_home.patch
-Patch1:		%{name}-am_fix.patch
 URL:		http://galeon.sourceforge.net/
-BuildRequires:	GConf-devel >= 1.0.9-2
-BuildRequires:	ORBit-devel >= 0.5.0
+BuildRequires:	GConf2-devel
+BuildRequires:	ORBit2-devel
 BuildRequires:	bison
-BuildRequires:	gdk-pixbuf-devel >= 0.10.
+BuildRequires:	bonobo-activation-devel
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-core-devel >= 1.2.0
-BuildRequires:	gnome-libs-devel >= 1.2.0
-BuildRequires:	gnome-vfs-devel >= 0.5
+BuildRequires:	gnome-vfs2-devel
+BuildRequires:	gtk+2-devel >= 2.0.3
 BuildRequires:	intltool
-BuildRequires:	libglade-devel
+BuildRequires:	libglade2-devel
+BuildRequires:	libgnomeui-devel
 BuildRequires:	libstdc++-devel
-BuildRequires:	libxml-devel >= 1.8.7
+BuildRequires:	libxml2-devel
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
-BuildRequires:	oaf-devel >= 0.6.2
+BuildRequires:	nautilus-devel >= 1.1.17
 BuildRequires:	openssl-devel
 BuildRequires:	scrollkeeper
-Requires:	GConf >= 1.0.4-1
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 Prereq:		scrollkeeper
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,8 +41,9 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
 %define		_mandir		%{_prefix}/man
-%define		_sysconfdir	/etc/X11/GNOME
+%define		_sysconfdir	/etc/X11/GNOME2
 %define         _omf_dest_dir   %(scrollkeeper-config --omfdir)
+%define		_gcc_ver	%(%{__cc} -dumpversion | cut -b 1)
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -57,16 +57,17 @@ O galeon é um browser para o gnome baseado no mozilla.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
 
 %build
 rm -f missing
 xml-i18n-toolize --copy --force
 gettextize --copy --force
-aclocal -I %{_aclocaldir}/gnome
+aclocal -I %{_aclocaldir}/gnome2-macros
 %{__autoconf}
 %{__automake}
+%if %{_gcc_ver} > 2
+CXXFLAGS="-Wno-deprecated"; export CXXFLAGS
+%endif
 %configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
@@ -76,7 +77,7 @@ aclocal -I %{_aclocaldir}/gnome
 	--disable-install-schemas \
 	--disable-werror \
 	--enable-gconf-source=%{_sysconfdir}/gconf/schemas \
-	--enable-nautilus-view=no
+	--enable-nautilus-view=yes
 
 %{__make}
 
@@ -89,7 +90,7 @@ install -d $RPM_BUILD_ROOT%{_mandir}/man1
 	Networkdir=%{_applnkdir}/Network/WWW \
 	omf_dest_dir=%{_omf_dest_dir}/%{name}
 
-mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
+#mv -f $RPM_BUILD_ROOT%{_bindir}/galeon-bin $RPM_BUILD_ROOT%{_bindir}/galeon
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
@@ -100,8 +101,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 umask 022
 rm -f %{_libdir}/mozilla/component.reg
 MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
-gconftool --shutdown
-GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
+GCONF_CONFIG_SOURCE="" gconftool-2 --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas >/dev/null
 
 %postun -p /usr/bin/scrollkeeper-update
 
@@ -112,12 +112,13 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %attr(755,root,root) %{_bindir}/*
-%{_applnkdir}/Network/WWW/*
+#%{_applnkdir}/Network/WWW/*
 %{_libdir}/%{name}
+%{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
+%{_datadir}/applications/*
 %{_datadir}/gnome/help/galeon-manual
-%{_datadir}/gnome/ui/*.xml
-%{_datadir}/oaf/*
+%{_datadir}/gnome-2.0/ui/*.xml
 %{_omf_dest_dir}/%{name}
 %{_datadir}/sounds/galeon
 %{_pixmapsdir}/*
