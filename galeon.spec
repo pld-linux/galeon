@@ -1,9 +1,9 @@
 #
 # Conditional build:
-# _with_gcc2		- compile using gcc2 to get working java plugin.
-#			  Flash plugin seems to still doesn't work, use
-#			  mozilla instead. To compile wit this option, You
-#			  have to install mozilla compiled with gcc2.
+%bcond_with gcc2	# compile using gcc2 to get working java plugin.
+			# Flash plugin seems to still doesn't work, use
+			# mozilla instead. To compile wit this option, You
+			# have to install mozilla compiled with gcc2.
 #
 %define		minmozver	5:1.5
 %define		snap	20031025
@@ -19,7 +19,7 @@ Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
-Source0:	http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
 # Source0-md5:	970ec350142d2e2d2c9b94bce7cf7ab7
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
@@ -56,7 +56,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # can be provided by mozilla or mozilla-embedded
 %define		_noautoreqdep	libgtkembedmoz.so libgtksuperwin.so libxpcom.so
 
-%if %{?_with_gcc2:1}%{!?_with_gcc2:0}
+%if %{with gcc2}
 %define         __cc            gcc2
 %define         __cxx           gcc2
 %endif
