@@ -15,13 +15,13 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.14a
+Version:	1.3.15
 Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	d8232cbf87e4c9e2a70f605a1a7b6980
+# Source0-md5:	9334cbdf0734f626470e788ce37d21a6
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
@@ -30,20 +30,20 @@ Patch2:		%{name}-locale-names.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
-BuildRequires:	autoconf
+BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.4.0
 BuildRequires:	gnome-vfs2-devel >= 2.4.0
-BuildRequires:	gtk+2-devel >= 2.2.0
+BuildRequires:	gtk+2-devel >= 2:2.4.0
 BuildRequires:	intltool
 BuildRequires:	libbonoboui-devel >= 2.4.0
-BuildRequires:	libglade2-devel >= 2.0.1
+BuildRequires:	libglade2-devel >= 1:2.4.0
 BuildRequires:	libgnomeui-devel >= 2.4.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
-BuildRequires:	libxml2-devel >= 2.4.0
+BuildRequires:	libxml2-devel >= 2.6.6
 BuildRequires:	mozilla-devel >= %{minmozver}
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	rpm-build >= 4.1-10
@@ -51,6 +51,7 @@ BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post):	GConf2
 Requires(post):	scrollkeeper
 Requires:	glib2 >= 1:2.4.0
+Requires:	gtk+2 >= 2:2.4.0
 Requires:	libbonobo >= 2.4.0
 Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -74,7 +75,7 @@ interpretacji stron Mozilli).
 O galeon é um browser para o GNOME baseado no mozilla.
 
 %prep
-%setup -q -n %{name}-1.3.14
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
