@@ -1,6 +1,6 @@
 
 %define		minmozver	1.2
-%define		snap		20021104
+%define		snap		20021116
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -8,7 +8,7 @@ Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3
-Release:	0.%{snap}.2
+Release:	0.%{snap}.0
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
