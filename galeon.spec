@@ -1,6 +1,6 @@
 
-%define		minmozver	1.2
-%define		snap		20021201
+%define		minmozver	1.2.1
+%define		snap		20021206
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
@@ -15,8 +15,8 @@ Group:		X11/Applications/Networking
 #Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
 Source0:	%{name}-%{version}.%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
-Patch0:		%{name}-mozilla_five_home.patch
-Patch1:		%{name}-bookmarks_pixmaps_path.patch
+#Patch0:		%{name}-mozilla_five_home.patch
+#Patch1:		%{name}-bookmarks_pixmaps_path.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -37,7 +37,7 @@ BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel
 BuildRequires:	scrollkeeper
 BuildRequires:	bonobo-activation >= 2.1.0-3
-BuildRequires:	rpm-build >= 4.1-7
+BuildRequires:	rpm-build >= 4.1-8.2
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 Requires(post):	GConf2
 Requires(post):	mozilla
@@ -46,10 +46,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # can be provided by mozilla or mozilla-embedded
 %define		_noautoreqdep	libgtkembedmoz.so libgtksuperwin.so libxpcom.so
-
-%define		_prefix		/usr/X11R6
-%define		_mandir		%{_prefix}/man
-%define		_sysconfdir	/etc/X11/GNOME2
 
 %description
 Gnome browser based on Gecko (Mozilla rendering engine).
@@ -63,8 +59,8 @@ O galeon é um browser para o gnome baseado no mozilla.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+#%patch0 -p1
+#%patch1 -p1
 
 %build
 rm -f missing
