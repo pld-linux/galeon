@@ -13,43 +13,43 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.10
-Release:	2
+Version:	1.3.11a
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source0:	http://dl.sf.net/%{name}/%{name}-%{version}.tar.bz2
-# Source0-md5:	1707493228c2174e8ecd856789506ecd
+# Source0-md5:	970ec350142d2e2d2c9b94bce7cf7ab7
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 URL:		http://galeon.sourceforge.net/
-BuildRequires:	GConf2-devel >= 2.0.0
-BuildRequires:	ORBit2-devel >= 2.7.5-1
+BuildRequires:	GConf2-devel >= 2.4.0
+BuildRequires:	ORBit2-devel >= 2.8.3
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	gettext-devel
-BuildRequires:	gnome-vfs2-devel >= 2.0.0
-BuildRequires:	gtk+2-devel >= 2.0.6
+BuildRequires:	gnome-vfs2-devel >= 2.4.0
+BuildRequires:	gtk+2-devel >= 2.2.0
 BuildRequires:	intltool
-BuildRequires:	libbonobo-devel >= 2.3.1-4
-BuildRequires:	libbonoboui-devel >= 2.3.3-2
-BuildRequires:	libglade2-devel >= 2.0.0
-BuildRequires:	libgnomeui-devel >= 2.3.3.1-2
+BuildRequires:	libbonobo-devel >= 2.4.0
+BuildRequires:	libbonoboui-devel >= 2.4.0
+BuildRequires:	libglade2-devel >= 2.0.1
+BuildRequires:	libgnomeui-devel >= 2.4.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.4.0
 BuildRequires:	mozilla-devel >= %{minmozver}
-BuildRequires:	nautilus-devel >= 2.3.7-3
+BuildRequires:	nautilus-devel >= 2.4.0
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	rpm-build >= 4.1-10
 Requires(post):	GConf2
 Requires(post):	mozilla
 Requires(post):	scrollkeeper
-Requires:	libbonobo >= 2.3.1-4
+Requires:	libbonobo >= 2.4.0
 Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
