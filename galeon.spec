@@ -48,7 +48,7 @@ BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	scrollkeeper >= 0.1.4
 BuildRequires:	rpm-build >= 4.1-10
 Requires:	libbonobo >= 2.3.1-4
-Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
+Requires:	mozilla-embedded = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla-embedded)
 Requires(post):	GConf2
 Requires(post):	mozilla
 Requires(post):	scrollkeeper
