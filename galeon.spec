@@ -74,6 +74,11 @@ gzip -9nf AUTHORS ChangeLog NEWS README
 
 %find_lang %{name} --with-gnome
 
+%post
+umask 022
+rm -f %{_libdir}/mozilla/component.reg
+MOZILLA_FIVE_HOME=%{_libdir}/mozilla regxpcom
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
