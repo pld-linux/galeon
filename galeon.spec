@@ -49,13 +49,10 @@ aclocal
 autoconf
 automake -a -c
 %configure \
-	--with-gnome \
-	--without-debug \
-	--enable-gcc-compatibility-hack \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
-	--enable-cookies \
-	--disable-cpp-rtti
+	--enable-nls \
+	--disable-included-gettext
 
 %{__make}
 
