@@ -53,7 +53,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 # can be provided by mozilla or mozilla-embedded
 %define		_noautoreqdep	libgtkembedmoz.so libgtksuperwin.so libxpcom.so
 
-%if%{?_with_gcc2:1}%{!?_with_gcc2:0}
+%if %{?_with_gcc2:1}%{!?_with_gcc2:0}
 %define         __cc            gcc2
 %define         __cxx           gcc2
 %endif
