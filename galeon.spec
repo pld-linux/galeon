@@ -5,15 +5,14 @@ Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Name:		galeon
-Version:	1.2.0
-Release:	0.1
+Version:	1.2.1
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://prdownloads.sourceforge.net/galeon/%{name}-%{version}.tar.gz
 Patch0:		%{name}-mozilla_five_home.patch
 Patch1:		%{name}-am_fix.patch
-Patch2:		%{name}-gcc31.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf-devel >= 1.0.4-1
 BuildRequires:	ORBit-devel >= 0.5.0
@@ -52,19 +51,14 @@ O galeon é um browser para o gnome baseado no mozilla.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
-sed -e s/AM_GNOME_GETTEXT/AM_GNU_GETTEXT/ configure.in >configure.in.tmp
-# FIXME: Broken GCONF?
-#sed -e s/AM_GCONF_SOURCE/echo/ configure.in.tmp >configure.in
-#mv -f configure.in.tmp configure.in
 rm -f missing
 xml-i18n-toolize --copy --force
 gettextize --copy --force
 aclocal -I %{_aclocaldir}/gnome
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--with-mozilla-libs=%{_libdir} \
 	--with-mozilla-includes=%{_includedir}/mozilla \
@@ -108,6 +102,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/%{name}
 %{_datadir}/galeon
 %{_datadir}/gnome/help/galeon-manual
+%{_datadir}/gnome/ui/*.xml
 %{_datadir}/oaf/*
 %{_datadir}/omf/*
 %{_datadir}/sounds/galeon
