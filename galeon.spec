@@ -1,8 +1,8 @@
 #
 # Conditional build:
 # _with_gcc2		- compile using gcc2 to get working java plugin.
-#			  Flash plugin seems to still doesn't work, use 
-#			  mozilla instead. To compile wit this option, You 
+#			  Flash plugin seems to still doesn't work, use
+#			  mozilla instead. To compile wit this option, You
 #			  have to install mozilla compiled with gcc2.
 #
 %define		minmozver	1.5a
@@ -105,7 +105,7 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_mandir}/man1
 
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT 
+	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
