@@ -40,7 +40,7 @@ BuildRequires:	libglade2-devel >= 2.0.0
 BuildRequires:	libgnomeui-devel >= 2.3.3.1-2
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml2-devel >= 2.4.0
-BuildRequires:	mozilla-embedded-devel >= %{minmozver}
+BuildRequires:	mozilla-devel >= %{minmozver}
 BuildRequires:	nautilus-devel >= 2.3.7-3
 BuildRequires:	openssl-devel >= 0.9.7c
 BuildRequires:	scrollkeeper >= 0.1.4
@@ -49,7 +49,7 @@ Requires(post):	GConf2
 Requires(post):	mozilla
 Requires(post):	scrollkeeper
 Requires:	libbonobo >= 2.3.1-4
-Requires:	mozilla-embedded = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla-embedded)
+Requires:	mozilla = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla)
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # can be provided by mozilla or mozilla-embedded
