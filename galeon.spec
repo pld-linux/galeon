@@ -25,7 +25,7 @@ BuildRequires:	gnome-core-devel >= 1.2.0
 BuildRequires:	gnome-libs-devel >= 1.2.0
 BuildRequires:	gnome-vfs-devel >= 0.5
 BuildRequires:	intltool
-BuildRequires:	libglade-devel
+BuildRequires:	libglade-gnome-devel
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxml-devel >= 1.8.7
 BuildRequires:	mozilla-embedded-devel >= %{minmozver}
@@ -95,6 +95,9 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
 %find_lang %{name} --with-gnome
 
+%clean
+rm -rf $RPM_BUILD_ROOT
+
 %post
 /usr/bin/scrollkeeper-update
 umask 022
@@ -104,9 +107,6 @@ gconftool --shutdown
 GCONF_CONFIG_SOURCE=xml::%{_sysconfdir}/gconf/gconf.xml.defaults gconftool --makefile-install-rule %{_sysconfdir}/gconf/schemas/galeon.schemas 2>dev/null >/dev/null
 
 %postun -p /usr/bin/scrollkeeper-update
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
