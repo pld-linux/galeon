@@ -1,5 +1,5 @@
 
-%define		minmozver	1.0rc3
+%define		minmozver	1.0
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
