@@ -6,20 +6,20 @@
 #			  have to install mozilla compiled with gcc2.
 #
 %define		minmozver	1.3b-0.2
-%define		snap		20030226
+%define		snap		20030305
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o gnome baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	1.3.2
-Release:	%{snap}.1
+Version:	1.3.3
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
-#Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
-Source0:	%{name}-%{version}-%{snap}.tar.bz2
+Source0:	http://unc.dl.sourceforge.net/sourceforge/galeon/%{name}-%{version}.tar.gz
+#Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	autoconf
@@ -27,7 +27,7 @@ BuildRequires:	automake
 BuildRequires:	GConf2-devel
 BuildRequires:	ORBit2-devel
 BuildRequires:	bison
-BuildRequires:	bonobo-activation-devel >= 2.1.0
+BuildRequires:	bonobo-activation-devel >= 2.2.0
 BuildRequires:	gettext-devel
 BuildRequires:	gnome-vfs2-devel
 BuildRequires:	gtk+2-devel >= 2.0.6
@@ -40,7 +40,7 @@ BuildRequires:	mozilla-embedded-devel >= %{minmozver}
 BuildRequires:	nautilus-devel >= 2.0.0
 BuildRequires:	openssl-devel >= 0.9.7
 BuildRequires:	scrollkeeper
-BuildRequires:	bonobo-activation >= 2.1.0-3
+BuildRequires:	bonobo-activation >= 2.2.0
 BuildRequires:	rpm-build >= 4.1-10
 Requires:	mozilla-embedded = %(rpm -q --qf '%{VERSION}' --whatprovides mozilla-embedded)
 Requires(post):	GConf2
@@ -67,7 +67,7 @@ interpretacji stron Mozilli).
 O galeon é um browser para o gnome baseado no mozilla.
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q
 
 %build
 rm -f missing
