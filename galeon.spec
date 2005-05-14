@@ -16,7 +16,7 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.20
-Release:	3
+Release:	4
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -120,7 +120,7 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 # No components installed now.
 #rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
 
-#rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
+rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 # galeon-2.0.mo, but gnome/help/galeon
 %find_lang galeon-2.0 --with-gnome --all-name
