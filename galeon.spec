@@ -1,11 +1,11 @@
 #
 # Conditional build:
-%bcond_with nautilus	# disable nautilus view
-%bcond_with gcc2	# compile using gcc2 to get working gcc2-compiled java
-			# plugin (better get gcc3-compiled one).
-			# Flash plugin seems to still not work, use
-			# mozilla instead. To compile wit this option, You
-			# have to install mozilla compiled with gcc2.
+%bcond_with	nautilus	# disable nautilus view
+%bcond_with	gcc2		# compile using gcc2 to get working gcc2-compiled java
+				# plugin (better get gcc3-compiled one).
+				# Flash plugin seems to still not work, use
+				# mozilla instead. To compile wit this option, You
+				# have to install mozilla compiled with gcc2.
 #
 %define		minmozver	5:1.7
 %define		snap	20040117
@@ -16,7 +16,7 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	1.3.21
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -48,9 +48,10 @@ BuildRequires:	libxml2-devel >= 2.6.6
 BuildRequires:	mozilla-devel >= %{minmozver}
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
-BuildRequires:	rpm-build >= 4.1-10
+BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.1.4
-Requires(post):	GConf2
+Requires(post,preun):	GConf2
+Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
 Requires:	glib2 >= 1:2.4.4
 Requires:	gtk+2 >= 2:2.4.4
@@ -91,8 +92,8 @@ mv Galeon*.[ch] ../src
 %build
 rm -f missing
 cp /usr/share/automake/mkinstalldirs .
-glib-gettextize --copy --force
-intltoolize --copy --force
+%{__glib_gettextize}
+%{__intltoolize}
 %{__libtoolize}
 %{__aclocal}
 %{__autoheader}
@@ -105,7 +106,6 @@ intltoolize --copy --force
 	%else
 	--enable-nautilus-view=no
 	%endif
-
 %{__make}
 
 %install
@@ -129,15 +129,16 @@ rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 rm -rf $RPM_BUILD_ROOT
 
 %post
-umask 022
-/usr/bin/scrollkeeper-update
-%gconf_schema_install
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1 ||:
+%scrollkeeper_update_post
+%gconf_schema_install galeon.schemas
+%update_desktop_database_post
+
+%preun
+%gconf_schema_uninstall galeon.schemas
 
 %postun
-umask 022
-/usr/bin/scrollkeeper-update
-[ ! -x /usr/bin/update-desktop-database ] || /usr/bin/update-desktop-database >/dev/null 2>&1
+%scrollkeeper_update_postun
+%update_desktop_database_postun
 
 %files -f galeon-2.0.lang
 %defattr(644,root,root,755)
