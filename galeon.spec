@@ -58,6 +58,7 @@ Requires:	glib2 >= 1:2.4.4
 Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
 Requires:	mozilla-embedded = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla-embedded)
+Provides:	wwwbrowser
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # can be provided by mozilla or mozilla-embedded
