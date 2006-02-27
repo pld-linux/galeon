@@ -1,12 +1,11 @@
-diff -urN aa/galeon-1.3.17/configure.in galeon-1.3.17/configure.in
---- aa/galeon-1.3.17/configure.in	2004-08-07 22:42:52.000000000 +0200
-+++ galeon-1.3.17/configure.in	2004-08-22 23:47:13.501901936 +0200
-@@ -148,7 +148,7 @@
- MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir $MOZILLA-gtkmozembed`"
+--- galeon-2.0.1/configure.in~	2006-02-27 11:16:34.000000000 +0100
++++ galeon-2.0.1/configure.in	2006-02-27 11:17:17.000000000 +0100
+@@ -230,7 +230,7 @@
+ MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir $MOZILLA-xpcom`"
  AC_SUBST(MOZILLA_INCLUDE_ROOT)
  
--MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-gtkmozembed`"
+-MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-xpcom`"
 +MOZILLA_HOME="`$PKG_CONFIG --variable=libdir $MOZILLA-plugin`"
  AC_SUBST(MOZILLA_HOME)
  
- AC_DEFINE(ENABLE_MOZILLA_EMBED, 1, [Define to 1 if you wish to enable the Mozilla renderer.])
+ PKG_CHECK_MODULES(MOZILLA_COMPONENT, $MOZILLA-gtkmozembed >= $min_version,
