@@ -1,5 +1,6 @@
 #
 # Conditional build:
+%bcond_without	mozilla_firefox	# build without mozilla-firefox-devel
 %bcond_with	nautilus	# disable nautilus view
 %bcond_with	gcc2		# compile using gcc2 to get working gcc2-compiled java
 				# plugin (better get gcc3-compiled one).
@@ -7,7 +8,6 @@
 				# mozilla instead. To compile wit this option, You
 				# have to install mozilla compiled with gcc2.
 #
-%define		minmozver	5:1.7
 %define		snap	20040117
 
 Summary:	Galeon - gecko-based GNOME web browser
@@ -16,7 +16,7 @@ Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
 Version:	2.0.1
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -46,7 +46,11 @@ BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.6
-BuildRequires:	mozilla-devel >= %{minmozver}
+%if %{with mozilla_firefox}
+BuildRequires:	mozilla-firefox-devel
+%else
+BuildRequires:	mozilla-devel >= 5:1.7
+%endif
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
@@ -57,7 +61,11 @@ Requires(post,postun):	scrollkeeper
 Requires:	glib2 >= 1:2.4.4
 Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
+%if %{with mozilla_firefox}
+%requires_eq	mozilla-firefox
+%else
 Requires:	mozilla-embedded = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla-embedded)
+%endif
 Provides:	wwwbrowser
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
