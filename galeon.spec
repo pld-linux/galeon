@@ -73,8 +73,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_noautoreqdep	libgtkembedmoz.so libgtksuperwin.so libxpcom.so
 
 %if %{with gcc2}
-%define         __cc            gcc2
-%define         __cxx           gcc2
+%define		__cc		gcc2
+%define		__cxx		gcc2
 %endif
 
 %description
