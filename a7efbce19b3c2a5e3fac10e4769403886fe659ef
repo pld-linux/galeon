@@ -1,0 +1,1 @@
+- run /usr/bin/update-desktop-database in %post and %postun
