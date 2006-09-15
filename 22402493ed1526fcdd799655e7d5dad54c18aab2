@@ -1,0 +1,3 @@
+- updated to 1.3.13a
+- added locale-names patch (changes locale no -> nb)
+- removed outdated/not needed %configure options
