@@ -156,7 +156,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/*
 %{_libdir}/bonobo/servers/*
 %{_datadir}/galeon
-%{_desktopdir}/*
+%{_desktopdir}/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
 %{_omf_dest_dir}/%{name}
 %{_datadir}/sounds/galeon
