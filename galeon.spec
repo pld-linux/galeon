@@ -62,7 +62,7 @@ Requires:	glib2 >= 1:2.4.4
 Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
 %if %{with mozilla_firefox}
-%requires_eq	mozilla-firefox
+%requires_eq	mozilla-firefox-libs
 %else
 Requires:	mozilla-embedded = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla-embedded)
 %endif
