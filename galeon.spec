@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without	mozilla_firefox	# build without mozilla-firefox-devel
+%bcond_with	mozilla_firefox	# build without mozilla-firefox-devel
 %bcond_with	nautilus	# disable nautilus view
 %bcond_with	gcc2		# compile using gcc2 to get working gcc2-compiled java
 				# plugin (better get gcc3-compiled one).
@@ -15,13 +15,13 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	2.0.1
-Release:	9
+Version:	2.0.2
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/galeon/%{name}-%{version}.tar.bz2
-# Source0-md5:	34d6e3a6ee78f9e4d12736e5d81b462b
+# Source0-md5:	43d395aa3e6424d980919942e5499dba
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
@@ -49,7 +49,7 @@ BuildRequires:	libxml2-devel >= 2.6.6
 %if %{with mozilla_firefox}
 BuildRequires:	mozilla-firefox-devel
 %else
-BuildRequires:	mozilla-devel >= 5:1.7
+BuildRequires:	xulrunner-devel >= 1.8.0.4
 %endif
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
@@ -62,9 +62,9 @@ Requires:	glib2 >= 1:2.4.4
 Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
 %if %{with mozilla_firefox}
-%requires_eq	mozilla-firefox-libs
+%requires_eq	mozilla-firefox
 %else
-Requires:	mozilla-embedded = %(rpm -q --qf '%{EPOCH}:%{VERSION}' --whatprovides mozilla-embedded)
+%requires_eq	xulrunner
 %endif
 Provides:	wwwbrowser
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -129,8 +129,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 
 # No components installed now.
 #rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
-
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
 
 # galeon-2.0.mo, but gnome/help/galeon
 %find_lang galeon-2.0 --with-gnome --all-name
