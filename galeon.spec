@@ -112,9 +112,14 @@ cp /usr/share/automake/mkinstalldirs .
 %configure \
 	--disable-schemas-install \
 	%if %{with nautilus}
-	--enable-nautilus-view=yes
+	--enable-nautilus-view=yes \
 	%else
-	--enable-nautilus-view=no
+	--enable-nautilus-view=no \
+	%endif
+	%if %{with mozilla_firefox}
+	--with-mozilla=firefox
+	%else
+	--with-mozilla=xulrunner
 	%endif
 %{__make}
 
