@@ -1,6 +1,5 @@
 #
 # Conditional build:
-%bcond_with	mozilla_firefox	# build without mozilla-firefox-devel
 %bcond_with	nautilus	# disable nautilus view
 %bcond_with	gcc2		# compile using gcc2 to get working gcc2-compiled java
 				# plugin (better get gcc3-compiled one).
@@ -46,11 +45,7 @@ BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.6
-%if %{with mozilla_firefox}
-BuildRequires:	mozilla-firefox-devel
-%else
 BuildRequires:	xulrunner-devel >= 1.8.0.4
-%endif
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.197
@@ -61,11 +56,7 @@ Requires(post,preun):	GConf2
 Requires:	glib2 >= 1:2.4.4
 Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
-%if %{with mozilla_firefox}
-%requires_eq	mozilla-firefox
-%else
 %requires_eq	xulrunner
-%endif
 Provides:	wwwbrowser
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -116,11 +107,7 @@ cp /usr/share/automake/mkinstalldirs .
 	%else
 	--enable-nautilus-view=no \
 	%endif
-	%if %{with mozilla_firefox}
-	--with-mozilla=firefox
-	%else
 	--with-mozilla=xulrunner
-	%endif
 %{__make}
 
 %install
