@@ -7,7 +7,6 @@
 				# mozilla instead. To compile wit this option, You
 				# have to install mozilla compiled with gcc2.
 #
-%define		snap	20040117
 
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl):	Galeon - przegl±darka WWW dla GNOME
