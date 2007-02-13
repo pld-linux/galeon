@@ -9,9 +9,9 @@
 #
 
 Summary:	Galeon - gecko-based GNOME web browser
-Summary(pl.UTF-8):   Galeon - przeglądarka WWW dla GNOME
-Summary(pt_BR.UTF-8):   O galeon é um browser para o GNOME baseado no mozilla
-Summary(zh_CN.UTF-8):   基于Gecko的GNOME流览器
+Summary(pl.UTF-8):	Galeon - przeglądarka WWW dla GNOME
+Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
+Summary(zh_CN.UTF-8):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	2.0.2
 Release:	1
