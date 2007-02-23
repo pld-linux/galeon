@@ -119,8 +119,6 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 # No components installed now.
 #rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
 
-rm -r $RPM_BUILD_ROOT%{_datadir}/locale/no
-
 # galeon-2.0.mo, but gnome/help/galeon
 %find_lang galeon-2.0 --with-gnome --all-name
 
