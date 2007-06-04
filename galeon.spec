@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_with	nautilus	# disable nautilus view
+%bcond_with	nautilus	# enable nautilus view
 %bcond_with	gcc2		# compile using gcc2 to get working gcc2-compiled java
 				# plugin (better get gcc3-compiled one).
 				# Flash plugin seems to still not work, use
