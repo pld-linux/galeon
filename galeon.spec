@@ -25,6 +25,7 @@ Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-po.patch
 Patch3:		%{name}-mozilla.patch
+Patch4:		%{name}-agent.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -84,6 +85,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 # regenerate - didn't compile with ORBit2 2.7.2
 cd idl
