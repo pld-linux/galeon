@@ -8,8 +8,8 @@ diff -ur galeon-2.0.2.orig/mozilla/mozilla-embed-shell.cpp galeon-2.0.2/mozilla/
 -	pref->SetCharPref ("general.useragent.vendor", "Galeon");
 -	pref->SetCharPref ("general.useragent.vendorSub", VERSION);
 +	pref->SetCharPref ("general.useragent.vendor", "PLD");
-+	pref->SetCharPref ("general.useragent.vendorSub", "2.0");
-+	pref->SetCharPref ("general.useragent.vendorComment", "Ac");
++	pref->SetCharPref ("general.useragent.vendorSub", "3.0");
++	pref->SetCharPref ("general.useragent.vendorComment", "Th");
 +	pref->SetCharPref ("general.useragent.extra.galeon", "Galeon/" VERSION);
  
  	return TRUE;
