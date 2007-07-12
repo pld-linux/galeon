@@ -14,13 +14,13 @@ Summary(pl):	Galeon - przegl±darka WWW dla GNOME
 Summary(pt_BR):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN):	»ùÓÚGeckoµÄGNOMEÁ÷ÀÀÆ÷
 Name:		galeon
-Version:	2.0.2
-Release:	4
+Version:	2.0.3
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/galeon/%{name}-%{version}.tar.bz2
-# Source0-md5:	43d395aa3e6424d980919942e5499dba
+# Source0-md5:	610fe2258e680f68bdf36ce7c1ba2a24
 #Source0:	%{name}-%{version}-%{snap}.tar.bz2
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
