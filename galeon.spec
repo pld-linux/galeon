@@ -14,7 +14,7 @@ Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN.UTF-8):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	2.0.3
-Release:	5
+Release:	6
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -57,6 +57,8 @@ Requires:	gtk+2 >= 2:2.4.4
 Requires:	libbonobo >= 2.4.0
 %requires_eq_to	xulrunner xulrunner-devel
 Provides:	wwwbrowser
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # can be provided by mozilla or mozilla-embedded
@@ -123,6 +125,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 # No components installed now.
 #rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
 
+[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
+	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 # galeon-2.0.mo, but gnome/help/galeon
 %find_lang galeon-2.0 --with-gnome --all-name
 
