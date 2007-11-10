@@ -47,6 +47,8 @@ BuildRequires:	libxml2-devel >= 2.6.6
 BuildRequires:	xulrunner-devel >= 1.8.0.4
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
+# support for --with-omf in find_lang.sh
+BuildRequires:	rpm-build >= 4.4.9-10
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.1.4
 Requires(post,postun):	desktop-file-utils
@@ -89,6 +91,9 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch3 -p1
 %patch4 -p1
 
+sed -i -e s#sr\@Latn#sr\@latin# configure.in
+mv po/sr\@{Latn,latin}.po
+
 # regenerate - didn't compile with ORBit2 2.7.2
 cd idl
 orbit-idl-2 -I /usr/share/idl/bonobo-2.0 -I /usr/share/idl/bonobo-activation-2.0 Galeon*.idl
@@ -125,10 +130,8 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_mandir}/man1
 # No components installed now.
 #rm -f $RPM_BUILD_ROOT%{_libdir}/%{name}/components/*.la
 
-[ -d $RPM_BUILD_ROOT%{_datadir}/locale/sr@latin ] || \
-	mv -f $RPM_BUILD_ROOT%{_datadir}/locale/sr@{Latn,latin}
 # galeon-2.0.mo, but gnome/help/galeon
-%find_lang galeon-2.0 --with-gnome --all-name
+%find_lang galeon-2.0 --with-gnome --with-omf --all-name
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -153,9 +156,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/galeon
 %{_desktopdir}/*.desktop
 %{_datadir}/gnome-2.0/ui/*.xml
-%{_omf_dest_dir}/%{name}
 %{_datadir}/sounds/galeon
 %{_pixmapsdir}/*
-%{_sysconfdir}/gconf/schemas/*
+%{_sysconfdir}/gconf/schemas/galeon.schemas
 %{_sysconfdir}/sound/events/*
 %{_mandir}/man1/*
