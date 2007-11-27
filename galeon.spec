@@ -7,7 +7,6 @@
 				# mozilla instead. To compile wit this option, You
 				# have to install mozilla compiled with gcc2.
 #
-
 Summary:	Galeon - gecko-based GNOME web browser
 Summary(pl.UTF-8):	Galeon - przeglądarka WWW dla GNOME
 Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
@@ -47,10 +46,10 @@ BuildRequires:	libxml2-devel >= 2.6.6
 BuildRequires:	xulrunner-devel >= 1.8.0.4
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
-# support for --with-omf in find_lang.sh
-BuildRequires:	rpm-build >= 4.4.9-10
+BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.1.4
+BuildRequires:	sed >= 4.0
 Requires(post,postun):	desktop-file-utils
 Requires(post,postun):	scrollkeeper
 Requires(post,preun):	GConf2
@@ -91,7 +90,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch3 -p1
 %patch4 -p1
 
-sed -i -e s#sr\@Latn#sr\@latin# configure.in
+sed -i -e 's#sr\@Latn#sr\@latin#' configure.in
 mv po/sr\@{Latn,latin}.po
 
 # regenerate - didn't compile with ORBit2 2.7.2
@@ -100,7 +99,6 @@ orbit-idl-2 -I /usr/share/idl/bonobo-2.0 -I /usr/share/idl/bonobo-activation-2.0
 mv Galeon*.[ch] ../src
 
 %build
-rm -f missing
 cp /usr/share/automake/mkinstalldirs .
 %{__glib_gettextize}
 %{__intltoolize}
