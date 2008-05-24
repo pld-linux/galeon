@@ -23,8 +23,9 @@ Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-mozilla.patch
-Patch3:		%{name}-agent.patch
-Patch4:		%{name}-build_fix.patch
+Patch3:		%{name}-build_fix.patch
+Patch4:		%{name}-ti-agent.patch
+Patch5:		%{name}-agent.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -46,6 +47,7 @@ BuildRequires:	libxml2-devel >= 2.6.6
 BuildRequires:	xulrunner-devel >= 1.8.0.4
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
+BuildRequires:	rpm >= 4.4.9-56
 BuildRequires:	rpmbuild(find_lang) >= 1.23
 BuildRequires:	rpmbuild(macros) >= 1.197
 BuildRequires:	scrollkeeper >= 0.1.4
@@ -88,7 +90,11 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%if "%{pld_release}" == "ti"
 %patch4 -p1
+%else
+%patch5 -p1
+%endif
 
 sed -i -e 's#sr\@Latn#sr\@latin#' configure.in
 mv po/sr\@{Latn,latin}.po
