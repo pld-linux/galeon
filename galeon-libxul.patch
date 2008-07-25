@@ -1,0 +1,53 @@
+--- galeon-libxul/configure.in.orig	2008-07-06 02:58:17.000000000 +0200
++++ galeon-libxul/configure.in	2008-07-24 11:28:05.000000000 +0200
+@@ -223,6 +223,9 @@
+                 if $PKG_CONFIG --exists $g-xpcom; then
+                         gecko=$g
+                         break;
++                elif $PKG_CONFIG --exists $g; then
++                        gecko=$g
++                        break;
+                 fi
+         done
+ fi
+@@ -259,9 +267,6 @@
+ PKG_CHECK_MODULES(XPCOM_COMPONENT, $MOZILLA_XPCOM >= $min_version)
+ 
+ MOZILLA_INCLUDE_ROOT="`$PKG_CONFIG --variable=includedir $MOZILLA_XPCOM`"
+-if test $MOZILLA = libxul-embedding-unstable; then
+-    MOZILLA_INCLUDE_ROOT="$MOZILLA_INCLUDE_ROOT/`$PKG_CONFIG --variable=includetype $MOZILLA_XPCOM`"
+-fi
+ AC_SUBST(MOZILLA_INCLUDE_ROOT)
+ 
+ PKG_CHECK_MODULES(MOZILLA_COMPONENT, $MOZILLA_GTKMOZEMBED >= $min_version,
+@@ -271,9 +276,10 @@
+ 	MOZILLA_COMPONENT_LIBS="$XPCOM_COMPONENT_LIBS -lxul"
+ fi
+ 
+-#if test $MOZILLA = xulrunner; then
+-#  MOZILLA_COMPONENT_LIBS="$MOZILLA_COMPONENT_LIBS -lxul"
+-#fi
++if test $MOZILLA = libxul-embedding-unstable; then
++  MOZILLA_COMPONENT_CFLAGS="$MOZILLA_COMPONENT_CFLAGS -I$MOZILLA_INCLUDE_ROOT/gtkembedmoz"
++  MOZILLA_COMPONENT_LIBS="$MOZILLA_COMPONENT_LIBS -lxul"
++fi
+ 
+ AC_SUBST(MOZILLA_COMPONENT_CFLAGS)
+ AC_SUBST(MOZILLA_COMPONENT_LIBS)
+@@ -360,12 +366,12 @@
+ #CPPFLAGS="-I$MOZILLA_INCLUDE_ROOT $MOZILLA_COMPONENT_CFLAGS $GALEON_DEPENDENCY_CFLAGS"
+ #CXXFLAGS="$_SAVE_CXXFLAGS $AM_CXXFLAGS -I$MOZILLA_INCLUDE_ROOT $MOZILLA_COMPONENT_CFLAGS"
+ #LDFLAGS="$_SAVE_LDFLAGS $AM_LDFLAGS $MOZILLA_COMPONENT_LIBS"
+-CPPFLAGS="-I$MOZILLA_INCLUDE_ROOT `$PKG_CONFIG --cflags-only-I $MOZILLA-xpcom` $GALEON_DEPENDENCY_CFLAGS"
+-CXXFLAGS="$_SAVE_CXXFLAGS $AM_CXXFLAGS -I$MOZILLA_INCLUDE_ROOT `pkg-config --cflags $MOZILLA-xpcom`"
+-LDFLAGS="$_SAVE_LDFLAGS $AM_LDFLAGS `pkg-config --libs $MOZILLA-xpcom`"
++CPPFLAGS="-I$MOZILLA_INCLUDE_ROOT `$PKG_CONFIG --cflags-only-I $MOZILLA-xpcom` `$PKG_CONFIG --cflags-only-I $MOZILLA` $GALEON_DEPENDENCY_CFLAGS"
++CXXFLAGS="$_SAVE_CXXFLAGS $AM_CXXFLAGS -I$MOZILLA_INCLUDE_ROOT `pkg-config --cflags $MOZILLA-xpcom` `pkg-config --cflags $MOZILLA`"
++LDFLAGS="$_SAVE_LDFLAGS $AM_LDFLAGS `pkg-config --libs $MOZILLA-xpcom` `pkg-config --libs $MOZILLA`"
+ 
+ 
+-TEST_MOZILLA_INCLUDE_DIRS="widget mimetype docshell history dom necko string layout gfx content js exthandler pipnss uriloader caps xpconnect nkcache fastfind gtkembedmoz chrome"
++TEST_MOZILLA_INCLUDE_DIRS="widget mimetype docshell history dom necko string layout gfx content xpcom js exthandler pipnss uriloader caps xpconnect nkcache fastfind gtkembedmoz chrome"
+ for i in $TEST_MOZILLA_INCLUDE_DIRS ; do
+    CXXFLAGS="$CXXFLAGS -I$MOZILLA_INCLUDE_ROOT/$i"
+ done
