@@ -5,11 +5,11 @@ diff -ur galeon-2.0.2.orig/mozilla/mozilla-embed-shell.cpp galeon-2.0.2/mozilla/
  
  	// Also set vendor and vendorSub prefs so that mozilla can construct
  	// the user agent string for us.
--	pref->SetCharPref ("general.useragent.vendor", "Galeon");
--	pref->SetCharPref ("general.useragent.vendorSub", VERSION);
+-	pref->SetCharPref ("general.useragent.vendor", USERAGENT_VENDOR);
+-	pref->SetCharPref ("general.useragent.vendorSub", USERAGENT_VENDORSUB);
 +	pref->SetCharPref ("general.useragent.vendor", "PLD");
 +	pref->SetCharPref ("general.useragent.vendorSub", "Titanium");
-+	pref->SetCharPref ("general.useragent.extra.galeon", "Galeon/" VERSION);
++	pref->SetCharPref ("general.useragent.extra.galeon", USERAGENT_VENDOR "/" USERAGENT_VENDORSUB);
  
  	return TRUE;
  }
