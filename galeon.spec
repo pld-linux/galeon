@@ -12,20 +12,19 @@ Summary(pl.UTF-8):	Galeon - przeglądarka WWW dla GNOME
 Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN.UTF-8):	基于Gecko的GNOME流览器
 Name:		galeon
-Version:	2.0.5
-Release:	4
+Version:	2.0.6
+Release:	1
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
 Source0:	http://dl.sourceforge.net/galeon/%{name}-%{version}.tar.bz2
-# Source0-md5:	bbddb89ad1ba08a62e03bceab5a38d93
+# Source0-md5:	7723816d29edac94945e5fd9a2a402f8
 Source1:	%{name}-config-tool.1
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-home_etc.patch
-Patch2:		%{name}-mozilla.patch
-Patch3:		%{name}-build_fix.patch
-Patch4:		%{name}-ti-agent.patch
-Patch5:		%{name}-agent.patch
+Patch2:		%{name}-ti-agent.patch
+Patch3:		%{name}-agent.patch
+Patch4:		%{name}-libxul.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -88,13 +87,12 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
 %if "%{pld_release}" == "ti"
-%patch4 -p1
+%patch2 -p1
 %else
-%patch5 -p1
+%patch3 -p1
 %endif
+%patch4 -p1
 
 sed -i -e 's#sr\@Latn#sr\@latin#' configure.in
 mv po/sr\@{Latn,latin}.po
