@@ -1,4 +1,9 @@
 #
+# TODO:
+#   - force galeon to use old SSL dialogs using nsIBadCertListener, ie. port
+#     EphyBadCertRejector from Epiphany, this will fix issues with https sites
+#     using self signed and expired certificates or mismatches in domain names
+#
 # Conditional build:
 %bcond_with	nautilus	# enable nautilus view
 %bcond_with	gcc2		# compile using gcc2 to get working gcc2-compiled java
@@ -13,7 +18,7 @@ Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN.UTF-8):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	2.0.6
-Release:	1
+Release:	2
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -25,6 +30,7 @@ Patch1:		%{name}-home_etc.patch
 Patch2:		%{name}-ti-agent.patch
 Patch3:		%{name}-agent.patch
 Patch4:		%{name}-libxul.patch
+Patch5:		%{name}-xulappinfo.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -93,6 +99,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %patch3 -p1
 %endif
 %patch4 -p1
+%patch5 -p1
 
 sed -i -e 's#sr\@Latn#sr\@latin#' configure.in
 mv po/sr\@{Latn,latin}.po
