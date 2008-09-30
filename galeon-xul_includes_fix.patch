@@ -1,0 +1,11 @@
+diff -ur galeon-2.0.7.orig/mozilla/Makefile.am galeon-2.0.7/mozilla/Makefile.am
+--- galeon-2.0.7.orig/mozilla/Makefile.am	2008-09-03 05:13:36.000000000 +0200
++++ galeon-2.0.7/mozilla/Makefile.am	2008-09-30 12:44:25.000000000 +0200
+@@ -23,6 +23,7 @@
+ 	-I$(MOZILLA_INCLUDE_ROOT)/helperAppDlg \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/history \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/htmlparser \
++	-I$(MOZILLA_INCLUDE_ROOT)/intl \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/java \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/js \
+ 	-I$(MOZILLA_INCLUDE_ROOT)/jsconsole \
