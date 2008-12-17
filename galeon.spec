@@ -18,7 +18,7 @@ Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN.UTF-8):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	2.0.7
-Release:	3
+Release:	4
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
