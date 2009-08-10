@@ -18,7 +18,7 @@ Summary(pt_BR.UTF-8):	O galeon é um browser para o GNOME baseado no mozilla
 Summary(zh_CN.UTF-8):	基于Gecko的GNOME流览器
 Name:		galeon
 Version:	2.0.7
-Release:	7
+Release:	8
 Epoch:		2
 License:	GPL
 Group:		X11/Applications/Networking
@@ -31,6 +31,7 @@ Patch2:		%{name}-ti-agent.patch
 Patch3:		%{name}-agent.patch
 Patch4:		%{name}-libxul.patch
 Patch5:		%{name}-xul_includes_fix.patch
+Patch6:		%{name}-xulrunner-1_9_1.patch
 URL:		http://galeon.sourceforge.net/
 BuildRequires:	GConf2-devel >= 2.4.0
 BuildRequires:	ORBit2-devel >= 2.8.3
@@ -49,7 +50,7 @@ BuildRequires:	libgnomeui-devel >= 2.6.0
 BuildRequires:	libstdc++-devel
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 2.6.6
-BuildRequires:	xulrunner-devel >= 1.8.0.4
+BuildRequires:	xulrunner-devel >= 1.9.1
 %{?with_nautilus:BuildRequires:	nautilus-devel >= 2.4.0}
 BuildRequires:	pkgconfig
 BuildRequires:	rpm >= 4.4.9-56
@@ -100,6 +101,7 @@ O galeon é um browser para o GNOME baseado no mozilla.
 %endif
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 sed -i -e 's#sr\@Latn#sr\@latin#' configure.in
 mv po/sr\@{Latn,latin}.po
