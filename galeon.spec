@@ -38,7 +38,7 @@ BuildRequires:	ORBit2-devel >= 2.8.3
 BuildRequires:	autoconf >= 2.52
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glib2-devel >= 1:2.4.4
 BuildRequires:	gnome-desktop-devel >= 2.9.91
 BuildRequires:	gnome-vfs2-devel >= 2.10.0-2
