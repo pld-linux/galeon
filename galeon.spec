@@ -92,16 +92,16 @@ O galeon é um browser para o GNOME baseado no mozilla.
 
 %prep
 %setup -q
-%patch0 -p1
-%patch1 -p1
+%patch -P0 -p1
+%patch -P1 -p1
 %if "%{pld_release}" == "ti"
-%patch2 -p1
+%patch -P2 -p1
 %else
-%patch3 -p1
+%patch -P3 -p1
 %endif
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
+%patch -P4 -p1
+%patch -P5 -p1
+%patch -P6 -p1
 
 sed -i -e 's#sr\@Latn#sr\@latin#' configure.in
 mv po/sr\@{Latn,latin}.po
